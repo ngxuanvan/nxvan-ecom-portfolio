@@ -207,6 +207,17 @@ export const portfolio = {
       school: "Đại học Kinh tế TP. Hồ Chí Minh",
       time: "2024 – Hiện tại",
       major: "Chuyên ngành: Thương mại điện tử",
+      logo: {
+        src: "/logo-ueh.png",
+        alt: "Logo Đại học Kinh tế TP. Hồ Chí Minh",
+      },
+      courses: [
+        "Marketing kỹ thuật số",
+        "Thương mại điện tử",
+        "Công nghệ TMĐT",
+        "Phát triển ứng dụng TMĐT",
+        "Phân tích nghiệp vụ kinh doanh",
+      ],
       gpa: {
         label: "GPA",
         value: "3.71 / 4.00",
@@ -216,6 +227,17 @@ export const portfolio = {
       school: "Cao đẳng FPT Polytechnic Hồ Chí Minh",
       time: "2021 – 2023",
       major: "Chuyên ngành: Thương mại điện tử",
+      logo: {
+        src: "/FPT_Polytechnic.png",
+        alt: "Logo Cao đẳng FPT Polytechnic Hồ Chí Minh",
+      },
+      courses: [
+        "Digital Marketing",
+        "SEO & Marketing",
+        "Website Development",
+        "Introduction to E-commerce",
+        "Content Marketing",
+      ],
       gpa: {
         label: "GPA",
         value: "8.20 / 10.00",

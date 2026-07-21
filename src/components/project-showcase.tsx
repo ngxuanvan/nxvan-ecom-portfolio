@@ -53,11 +53,19 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
           <motion.article
             key={project.id}
             layout
-            className={`group overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-[0_22px_70px_-46px_rgba(15,27,51,0.38)] ${
+            className={`group overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-[0_22px_70px_-46px_rgba(15,27,51,0.38)] transition-colors hover:border-[#2563EB]/35 ${
               index === 0 ? "lg:row-span-2" : ""
             }`}
             initial={reduceMotion ? false : { opacity: 0, y: 24 }}
             whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+            whileHover={
+              reduceMotion
+                ? undefined
+                : {
+                    y: -6,
+                    boxShadow: "0 30px 86px -52px rgba(15,27,51,0.55)",
+                  }
+            }
             viewport={{ once: true, margin: "-80px" }}
             transition={{
               type: "spring",
@@ -86,12 +94,14 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
               </p>
               <div className="mt-6 flex flex-wrap gap-2">
                 {project.tags.map((tag) => (
-                  <span
+                  <motion.span
                     key={tag}
                     className="rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-xs font-medium text-[#2563EB]"
+                    whileHover={reduceMotion ? undefined : { y: -2 }}
+                    transition={{ type: "spring", stiffness: 260, damping: 22 }}
                   >
                     {tag}
-                  </span>
+                  </motion.span>
                 ))}
               </div>
               <Button
@@ -101,7 +111,12 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
                 onClick={() => setActiveProject(project)}
               >
                 Xem chi tiết
-                <ArrowUpRight aria-hidden="true" size={16} strokeWidth={1.8} />
+                <ArrowUpRight
+                  aria-hidden="true"
+                  size={16}
+                  strokeWidth={1.8}
+                  className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                />
               </Button>
             </div>
           </motion.article>
@@ -195,7 +210,13 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
               {activeProject.achievements.length > 0 ? (
                 <ul className="mt-6 grid gap-3">
                   {activeProject.achievements.map((achievement) => (
-                    <li key={achievement} className="flex gap-3 text-slate-700">
+                    <motion.li
+                      key={achievement}
+                      className="flex gap-3 text-slate-700"
+                      initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+                      animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+                      transition={{ type: "spring", stiffness: 120, damping: 22 }}
+                    >
                       <CheckCircle2
                         aria-hidden="true"
                         size={18}
@@ -203,7 +224,7 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
                         className="mt-1 shrink-0 text-[#2563EB]"
                       />
                       <span>{achievement}</span>
-                    </li>
+                    </motion.li>
                   ))}
                 </ul>
               ) : (

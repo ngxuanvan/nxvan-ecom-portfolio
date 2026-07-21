@@ -77,7 +77,7 @@ export function ProjectGallery({ images, projectTitle }: ProjectGalleryProps) {
     <>
       <div className="grid gap-3 sm:grid-cols-2">
         {images.map((image, index) => (
-          <button
+          <motion.button
             key={image.src}
             type="button"
             onClick={() => setActiveIndex(index)}
@@ -85,6 +85,16 @@ export function ProjectGallery({ images, projectTitle }: ProjectGalleryProps) {
               index === 0 && images.length > 2 ? "sm:col-span-2" : ""
             }`}
             aria-label={`Mở ${image.alt}`}
+            whileHover={
+              reduceMotion
+                ? undefined
+                : {
+                    y: -3,
+                    boxShadow: "0 22px 60px -42px rgba(15,27,51,0.5)",
+                  }
+            }
+            whileTap={reduceMotion ? undefined : { scale: 0.99 }}
+            transition={{ type: "spring", stiffness: 260, damping: 24 }}
           >
             <span className="relative block aspect-[16/10]">
               <Image
@@ -99,7 +109,7 @@ export function ProjectGallery({ images, projectTitle }: ProjectGalleryProps) {
                 className="object-cover transition duration-500 group-hover:scale-[1.025]"
               />
             </span>
-          </button>
+          </motion.button>
         ))}
       </div>
 

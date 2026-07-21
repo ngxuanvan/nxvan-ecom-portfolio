@@ -1,8 +1,8 @@
 import {
-  ArrowDownToLine,
   ArrowRight,
   BarChart3,
   BriefcaseBusiness,
+  ExternalLink,
   GraduationCap,
   Mail,
   MapPin,
@@ -12,8 +12,12 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 
+import { ExperienceCard } from "@/components/experience-card";
+import { HeroSection } from "@/components/hero-section";
 import { MotionSection } from "@/components/motion-section";
+import { StaggerGroup, StaggerItem } from "@/components/motion-primitives";
 import { ProjectShowcase } from "@/components/project-showcase";
+import { SiteNavigation } from "@/components/site-navigation";
 import { Button } from "@/components/ui/button";
 import { portfolio } from "@/data/portfolio";
 
@@ -41,93 +45,15 @@ export default function Home() {
 
   return (
     <main className="min-h-[100dvh] overflow-x-hidden bg-white text-[#0F1B33]">
-      <header className="sticky top-0 z-30 border-b border-slate-200/70 bg-white/95 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
-          <a
-            href="#trang-dau"
-            className="text-sm font-semibold tracking-tight text-[#0F1B33] sm:text-base"
-          >
-            {person.name}
-          </a>
-          <nav
-            aria-label="Điều hướng chính"
-            className="hidden items-center gap-6 text-sm font-medium text-slate-600 lg:flex"
-          >
-            {portfolio.nav.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="transition hover:text-[#2563EB] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2563EB]"
-              >
-                {item.label}
-              </a>
-            ))}
-          </nav>
-          <Button asChild size="sm">
-            <a href={person.cvPath} download>
-              <ArrowDownToLine aria-hidden="true" size={16} strokeWidth={1.8} />
-              Tải CV
-            </a>
-          </Button>
-        </div>
-      </header>
+      <SiteNavigation name={person.name} nav={[...portfolio.nav]} cvPath={person.cvPath} />
 
-      <section
-        id="trang-dau"
-        className="mx-auto grid min-h-[calc(100dvh-73px)] max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 md:py-24 lg:grid-cols-[1.08fr_0.92fr] lg:px-8"
-      >
-        <div>
-          <p className="mb-6 inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-sm font-medium text-[#2563EB]">
-            {person.title}
-          </p>
-          <h1 className="max-w-4xl text-5xl font-semibold leading-none tracking-tight text-[#0F1B33] md:text-7xl">
-            {person.name}
-          </h1>
-          <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-600">
-            {portfolio.hero.description}
-          </p>
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <Button asChild size="lg">
-              <a href="#du-an">
-                Xem dự án
-                <ArrowRight aria-hidden="true" size={18} strokeWidth={1.8} />
-              </a>
-            </Button>
-            <Button asChild size="lg" variant="secondary">
-              <a href={person.cvPath} download>
-                <ArrowDownToLine
-                  aria-hidden="true"
-                  size={18}
-                  strokeWidth={1.8}
-                />
-                Tải CV
-              </a>
-            </Button>
-          </div>
-        </div>
-
-        <div className="relative mx-auto w-full max-w-[520px]">
-          <div className="absolute -left-4 top-10 hidden h-36 w-36 rounded-[2rem] border border-blue-100 bg-blue-50 md:block" />
-          <div className="relative overflow-hidden rounded-[2.5rem] border border-slate-200 bg-slate-50 shadow-[0_28px_90px_-55px_rgba(15,27,51,0.45)]">
-            <Image
-              src={person.profileImage}
-              alt="Ảnh hồ sơ minh họa của Nguyễn Xuân Văn"
-              width={720}
-              height={840}
-              priority
-              className="h-auto w-full"
-            />
-          </div>
-          <div className="absolute -bottom-6 right-4 rounded-3xl border border-slate-200 bg-white px-5 py-4 shadow-[0_22px_70px_-42px_rgba(15,27,51,0.38)]">
-            <p className="text-sm font-medium tracking-normal text-slate-500">
-              GPA
-            </p>
-            <p className="mt-1 text-2xl font-semibold tracking-normal text-[#0F1B33] proportional-nums">
-              3.71 / 4.00
-            </p>
-          </div>
-        </div>
-      </section>
+      <HeroSection
+        name={person.name}
+        title={person.title}
+        description={portfolio.hero.description}
+        profileImage={person.profileImage}
+        cvPath={person.cvPath}
+      />
 
       <MotionSection
         id="gioi-thieu"
@@ -141,19 +67,20 @@ export default function Home() {
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
-            <div className="mt-12 grid gap-4 sm:grid-cols-3">
+            <StaggerGroup className="mt-12 grid gap-4 sm:grid-cols-3">
               {portfolio.about.stats.map((stat) => (
-                <div
+                <StaggerItem
                   key={stat.label}
-                  className="rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_18px_50px_-38px_rgba(15,27,51,0.35)]"
+                  hover
+                  className="rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_18px_50px_-38px_rgba(15,27,51,0.35)] transition-colors hover:border-[#2563EB]/30"
                 >
                   <p className="text-2xl font-semibold tracking-normal text-[#0F1B33] proportional-nums">
                     {stat.value}
                   </p>
                   <p className="mt-2 text-sm text-slate-500">{stat.label}</p>
-                </div>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerGroup>
           </div>
         </div>
       </MotionSection>
@@ -164,38 +91,7 @@ export default function Home() {
       >
         <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.75fr_1.25fr] lg:px-8">
           <SectionHeading eyebrow="02" title="Kinh nghiệm" />
-          <article className="relative rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_22px_70px_-48px_rgba(15,27,51,0.36)] sm:p-8">
-            <div className="absolute bottom-8 left-8 top-8 hidden w-px bg-blue-100 sm:block" />
-            <div className="relative sm:pl-12">
-              <div className="absolute left-[-3.25rem] top-1 hidden h-4 w-4 rounded-full border-4 border-white bg-[#2563EB] shadow-[0_0_0_1px_rgba(37,99,235,0.25)] sm:block" />
-              <p className="text-sm font-semibold tracking-normal text-[#2563EB] proportional-nums">
-                {portfolio.experience.time}
-              </p>
-              <h3 className="mt-3 text-3xl font-semibold tracking-tight">
-                {portfolio.experience.role}
-              </h3>
-              <p className="mt-2 text-base font-medium text-slate-600">
-                {portfolio.experience.company}
-              </p>
-              <div className="relative mt-8 overflow-hidden rounded-[1.75rem] border border-slate-200 bg-slate-50">
-                <Image
-                  src={portfolio.experience.image.src}
-                  alt={portfolio.experience.image.alt}
-                  width={980}
-                  height={640}
-                  className="h-auto w-full"
-                />
-              </div>
-              <ul className="mt-8 grid gap-4">
-                {portfolio.experience.bullets.map((bullet) => (
-                  <li key={bullet} className="flex gap-3 text-slate-700">
-                    <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#2563EB]" />
-                    <span className="leading-7">{bullet}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </article>
+          <ExperienceCard experience={portfolio.experience} />
         </div>
       </MotionSection>
 
@@ -224,27 +120,28 @@ export default function Home() {
                 Kỹ năng
               </h2>
             </div>
-            <div className="grid gap-5 md:grid-cols-2">
+            <StaggerGroup className="grid gap-5 md:grid-cols-2">
               {portfolio.skills.map((group) => (
-                <article
+                <StaggerItem
                   key={group.title}
-                  className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-6 shadow-[0_22px_70px_-55px_rgba(37,99,235,0.45)]"
+                  hover
+                  className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-6 shadow-[0_22px_70px_-55px_rgba(37,99,235,0.45)] transition-colors hover:border-blue-300/30 hover:bg-white/[0.06]"
                 >
                   <h3 className="text-xl font-semibold">{group.title}</h3>
                   <ul className="mt-6 grid gap-3">
                     {group.items.map((item) => (
                       <li
                         key={item}
-                        className="flex items-center gap-3 text-sm text-slate-200"
+                        className="flex items-center gap-3 rounded-xl px-2 py-1 text-sm text-slate-200 transition hover:bg-white/[0.06] hover:text-white"
                       >
                         <span className="h-1.5 w-1.5 rounded-full bg-[#2563EB]" />
                         {item}
                       </li>
                     ))}
                   </ul>
-                </article>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerGroup>
           </div>
         </div>
       </MotionSection>
@@ -253,27 +150,55 @@ export default function Home() {
         id="hoc-van"
         className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8"
       >
-        <div className="grid gap-12 lg:grid-cols-[0.75fr_1.25fr]">
+        <div className="grid gap-12 lg:grid-cols-[0.45fr_1.55fr] xl:grid-cols-[0.4fr_1.6fr]">
           <SectionHeading eyebrow="05" title="Học vấn" />
-          <div className="grid gap-5 md:grid-cols-2">
+          <StaggerGroup className="grid gap-5 md:grid-cols-2 xl:gap-6">
             {portfolio.education.map((item) => (
-              <article
+              <StaggerItem
                 key={item.school}
-                className="rounded-[2rem] border border-slate-200 bg-white p-7 shadow-[0_20px_64px_-48px_rgba(15,27,51,0.38)]"
+                hover
+                className="rounded-[2rem] border border-slate-200 bg-white p-7 shadow-[0_20px_64px_-48px_rgba(15,27,51,0.38)] transition-colors hover:border-[#2563EB]/35"
               >
-                <GraduationCap
-                  aria-hidden="true"
-                  size={30}
-                  strokeWidth={1.8}
-                  className="text-[#2563EB]"
-                />
-                <h3 className="mt-8 text-2xl font-semibold tracking-tight">
+                <div className="flex h-16 w-24 items-center justify-center rounded-2xl border border-slate-100 bg-white p-3 shadow-[0_14px_38px_-30px_rgba(15,27,51,0.42)]">
+                  {item.logo ? (
+                    <Image
+                      src={item.logo.src}
+                      alt={item.logo.alt}
+                      width={160}
+                      height={80}
+                      className="max-h-10 w-auto object-contain"
+                    />
+                  ) : (
+                    <GraduationCap
+                      aria-hidden="true"
+                      size={30}
+                      strokeWidth={1.8}
+                      className="text-[#2563EB]"
+                    />
+                  )}
+                </div>
+                <h3 className="mt-8 text-xl font-semibold leading-tight tracking-tight text-[#0F1B33] xl:text-[1.35rem] 2xl:text-[1.45rem]">
                   {item.school}
                 </h3>
                 <p className="mt-4 text-sm font-semibold tracking-normal text-[#2563EB] proportional-nums">
                   {item.time}
                 </p>
                 <p className="mt-5 text-slate-600">{item.major}</p>
+                <div className="mt-6">
+                  <p className="text-sm font-medium text-slate-500">
+                    Môn học tiêu biểu
+                  </p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {item.courses.map((course) => (
+                      <span
+                        key={course}
+                        className="rounded-full border border-blue-100 bg-blue-50/70 px-3 py-1.5 text-sm font-medium leading-5 text-[#1d4ed8]"
+                      >
+                        {course}
+                      </span>
+                    ))}
+                  </div>
+                </div>
                 <div className="mt-5 border-t border-slate-100 pt-5">
                   <p className="text-sm font-medium tracking-normal text-slate-500">
                     {item.gpa.label}
@@ -282,9 +207,9 @@ export default function Home() {
                     {item.gpa.value}
                   </p>
                 </div>
-              </article>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGroup>
         </div>
       </MotionSection>
 
@@ -302,16 +227,39 @@ export default function Home() {
                 <a href={`mailto:${person.email}`}>
                   <Mail aria-hidden="true" size={18} strokeWidth={1.8} />
                   Gửi email
+                  <ArrowRight
+                    aria-hidden="true"
+                    size={17}
+                    strokeWidth={1.8}
+                    className="transition-transform duration-300 group-hover:translate-x-1"
+                  />
                 </a>
               </Button>
               <Button asChild size="lg" variant="secondary">
                 <a href={person.cvPath} download>
-                  <ArrowDownToLine
-                    aria-hidden="true"
-                    size={18}
-                    strokeWidth={1.8}
-                  />
                   Tải CV
+                </a>
+              </Button>
+              <Button asChild size="lg" variant="secondary">
+                <a href={person.social.linkedin} target="_blank" rel="noreferrer">
+                  LinkedIn
+                  <ExternalLink
+                    aria-hidden="true"
+                    size={17}
+                    strokeWidth={1.8}
+                    className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  />
+                </a>
+              </Button>
+              <Button asChild size="lg" variant="secondary">
+                <a href={person.social.github} target="_blank" rel="noreferrer">
+                  GitHub
+                  <ExternalLink
+                    aria-hidden="true"
+                    size={17}
+                    strokeWidth={1.8}
+                    className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  />
                 </a>
               </Button>
             </div>
@@ -321,7 +269,7 @@ export default function Home() {
               <div className="grid gap-5">
                 <a
                   href={`mailto:${person.email}`}
-                  className="flex gap-4 text-slate-700 transition hover:text-[#2563EB]"
+                  className="flex gap-4 rounded-2xl p-2 text-slate-700 transition hover:-translate-y-0.5 hover:bg-blue-50/60 hover:text-[#2563EB]"
                 >
                   <Mail
                     aria-hidden="true"
@@ -333,7 +281,7 @@ export default function Home() {
                 </a>
                 <a
                   href={`tel:${person.phone.replaceAll(" ", "")}`}
-                  className="flex gap-4 text-slate-700 transition hover:text-[#2563EB]"
+                  className="flex gap-4 rounded-2xl p-2 text-slate-700 transition hover:-translate-y-0.5 hover:bg-blue-50/60 hover:text-[#2563EB]"
                 >
                   <Phone
                     aria-hidden="true"
