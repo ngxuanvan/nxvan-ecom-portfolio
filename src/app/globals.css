@@ -16,6 +16,9 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   font-variant-numeric: proportional-nums;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 ::selection {
@@ -26,6 +29,14 @@ body {
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 96px;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.text-pretty {
+  text-wrap: pretty;
 }
 
 @keyframes shimmer {

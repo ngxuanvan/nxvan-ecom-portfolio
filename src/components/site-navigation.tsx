@@ -25,38 +25,34 @@ export function SiteNavigation({ name, nav, cvPath }: SiteNavigationProps) {
   }, [scrollY]);
 
   useEffect(() => {
-    let frame = 0;
+    const sections = nav
+      .map((item) => document.getElementById(item.href.replace("#", "")))
+      .filter((section): section is HTMLElement => Boolean(section));
 
-    const updateActiveSection = () => {
-      const activationY = 132;
-      const current = nav.reduce<NavItem | undefined>((activeItem, item) => {
-        const section = document.getElementById(item.href.replace("#", ""));
-        if (!section) {
-          return activeItem;
+    if (sections.length === 0) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntry = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (visibleEntry?.target.id) {
+          setActiveHref(`#${visibleEntry.target.id}`);
         }
+      },
+      {
+        rootMargin: "-22% 0px -58% 0px",
+        threshold: [0.08, 0.2, 0.45],
+      },
+    );
 
-        const rect = section.getBoundingClientRect();
-        return rect.top <= activationY ? item : activeItem;
-      }, nav[0]);
-
-      if (current) {
-        setActiveHref(current.href);
-      }
-    };
-
-    const requestUpdate = () => {
-      window.cancelAnimationFrame(frame);
-      frame = window.requestAnimationFrame(updateActiveSection);
-    };
-
-    updateActiveSection();
-    window.addEventListener("scroll", requestUpdate, { passive: true });
-    window.addEventListener("resize", requestUpdate);
+    sections.forEach((section) => observer.observe(section));
 
     return () => {
-      window.cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", requestUpdate);
-      window.removeEventListener("resize", requestUpdate);
+      observer.disconnect();
     };
   }, [nav]);
 
@@ -86,7 +82,7 @@ export function SiteNavigation({ name, nav, cvPath }: SiteNavigationProps) {
 
         <nav
           aria-label="Điều hướng chính"
-          className="hidden items-center gap-1 rounded-full border border-slate-200/70 bg-white/70 p-1 text-sm font-medium text-slate-600 shadow-[0_12px_40px_-34px_rgba(15,27,51,0.32)] lg:flex"
+          className="hidden items-center gap-1 rounded-full border border-slate-200/70 bg-white/72 p-1 text-sm font-medium text-slate-600 shadow-[0_12px_40px_-34px_rgba(15,27,51,0.32)] backdrop-blur lg:flex"
         >
           {nav.map((item) => {
             const isActive = activeHref === item.href;

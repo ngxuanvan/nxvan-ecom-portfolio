@@ -5,6 +5,7 @@ import { ArrowUpRight, CheckCircle2, Clock3, X } from "lucide-react";
 import { useEffect, useId, useState } from "react";
 
 import { ProjectGallery } from "@/components/project-gallery";
+import { TetraToysCaseStudy } from "@/components/tetra-toys-case-study";
 import { Button } from "@/components/ui/button";
 import type { PortfolioImage, Project } from "@/data/portfolio";
 
@@ -24,6 +25,7 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
   const [activeProject, setActiveProject] = useState<Project | null>(null);
   const titleId = useId();
   const reduceMotion = useReducedMotion();
+  const hasCaseStudy = Boolean(activeProject?.caseStudy);
 
   useEffect(() => {
     if (!activeProject) {
@@ -53,7 +55,7 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
           <motion.article
             key={project.id}
             layout
-            className={`group overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-[0_22px_70px_-46px_rgba(15,27,51,0.38)] transition-colors hover:border-[#2563EB]/35 ${
+            className={`group flex flex-col overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-[0_22px_70px_-46px_rgba(15,27,51,0.38)] transition-colors hover:border-[#2563EB]/35 ${
               index === 0 ? "lg:row-span-2" : ""
             }`}
             initial={reduceMotion ? false : { opacity: 0, y: 24 }}
@@ -74,22 +76,41 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
               delay: reduceMotion ? 0 : index * 0.08,
             }}
           >
-            <div className="p-3">
-              <ProjectGallery
-                images={getGalleryImages(project)}
-                projectTitle={project.title}
-              />
-            </div>
-            <div className="p-6 sm:p-8">
-              <div className="flex flex-wrap items-center gap-3 text-sm font-medium tracking-normal text-slate-500 proportional-nums">
-                <span>{project.category}</span>
-                {project.role ? <span>{project.role}</span> : null}
-                {project.time ? <span>{project.time}</span> : null}
+            {(() => {
+              const previewImages =
+                project.caseStudy && project.images.cover
+                  ? [project.images.cover]
+                  : getGalleryImages(project);
+
+              return (
+                <div className="p-3 pb-0">
+                  <ProjectGallery
+                    images={previewImages}
+                    projectTitle={project.title}
+                  />
+                </div>
+              );
+            })()}
+            <div className="flex flex-1 flex-col p-6 sm:p-8">
+              <div className="flex flex-wrap items-center gap-2 text-sm font-medium tracking-normal text-slate-500 proportional-nums">
+                <span className="rounded-full bg-slate-100 px-3 py-1 text-slate-600">
+                  {project.category}
+                </span>
+                {project.role ? (
+                  <span className="rounded-full bg-blue-50 px-3 py-1 text-[#2563EB]">
+                    {project.role}
+                  </span>
+                ) : null}
+                {project.time ? (
+                  <span className="rounded-full bg-slate-100 px-3 py-1 text-slate-600">
+                    {project.time}
+                  </span>
+                ) : null}
               </div>
-              <h3 className="mt-4 text-2xl font-semibold tracking-tight text-[#0F1B33] md:text-3xl">
+              <h3 className="text-balance mt-5 text-2xl font-semibold tracking-tight text-[#0F1B33] md:text-3xl">
                 {project.title}
               </h3>
-              <p className="mt-4 max-w-2xl text-base leading-7 text-slate-600">
+              <p className="text-pretty mt-4 max-w-2xl text-base leading-7 text-slate-600">
                 {project.description}
               </p>
               <div className="mt-6 flex flex-wrap gap-2">
@@ -107,7 +128,7 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
               <Button
                 type="button"
                 variant="secondary"
-                className="mt-7"
+                className="mt-7 self-start"
                 onClick={() => setActiveProject(project)}
               >
                 Xem chi tiết
@@ -136,7 +157,9 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
             onMouseDown={() => setActiveProject(null)}
           >
             <motion.div
-              className="max-h-[90dvh] w-full max-w-3xl overflow-y-auto rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_30px_90px_-30px_rgba(15,27,51,0.55)] sm:p-8"
+              className={`max-h-[90dvh] w-full overflow-y-auto rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_30px_90px_-30px_rgba(15,27,51,0.55)] sm:p-8 ${
+                hasCaseStudy ? "max-w-6xl" : "max-w-3xl"
+              }`}
               initial={
                 reduceMotion ? false : { opacity: 0, y: 24, scale: 0.98 }
               }
@@ -151,12 +174,12 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
             >
               <div className="flex items-start justify-between gap-5">
                 <div>
-                  <p className="text-sm font-medium text-[#2563EB]">
+                  <p className="text-sm font-semibold text-[#2563EB]">
                     {activeProject.category}
                   </p>
                   <h3
                     id={titleId}
-                    className="mt-2 text-3xl font-semibold tracking-tight text-[#0F1B33]"
+                    className="text-balance mt-2 text-4xl font-semibold tracking-tight text-[#0F1B33]"
                   >
                     {activeProject.title}
                   </h3>
@@ -200,38 +223,53 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
                 {activeProject.description}
               </p>
 
-              <div className="mt-8">
-                <ProjectGallery
-                  images={getGalleryImages(activeProject)}
+              {activeProject.caseStudy ? (
+                <TetraToysCaseStudy
+                  caseStudy={activeProject.caseStudy}
                   projectTitle={activeProject.title}
                 />
-              </div>
-
-              {activeProject.achievements.length > 0 ? (
-                <ul className="mt-6 grid gap-3">
-                  {activeProject.achievements.map((achievement) => (
-                    <motion.li
-                      key={achievement}
-                      className="flex gap-3 text-slate-700"
-                      initial={reduceMotion ? false : { opacity: 0, y: 10 }}
-                      animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-                      transition={{ type: "spring", stiffness: 120, damping: 22 }}
-                    >
-                      <CheckCircle2
-                        aria-hidden="true"
-                        size={18}
-                        strokeWidth={1.8}
-                        className="mt-1 shrink-0 text-[#2563EB]"
-                      />
-                      <span>{achievement}</span>
-                    </motion.li>
-                  ))}
-                </ul>
               ) : (
-                <p className="mt-6 rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-5 text-slate-600">
-                  Đang cập nhật nội dung chi tiết. Chưa có chỉ số hoặc thành tựu
-                  bổ sung để hiển thị.
-                </p>
+                <>
+                  <div className="mt-8">
+                    <ProjectGallery
+                      images={getGalleryImages(activeProject)}
+                      projectTitle={activeProject.title}
+                    />
+                  </div>
+
+                  {activeProject.achievements.length > 0 ? (
+                    <ul className="mt-6 grid gap-3">
+                      {activeProject.achievements.map((achievement) => (
+                        <motion.li
+                          key={achievement}
+                          className="flex gap-3 text-slate-700"
+                          initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+                          animate={
+                            reduceMotion ? undefined : { opacity: 1, y: 0 }
+                          }
+                          transition={{
+                            type: "spring",
+                            stiffness: 120,
+                            damping: 22,
+                          }}
+                        >
+                          <CheckCircle2
+                            aria-hidden="true"
+                            size={18}
+                            strokeWidth={1.8}
+                            className="mt-1 shrink-0 text-[#2563EB]"
+                          />
+                          <span>{achievement}</span>
+                        </motion.li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className="mt-6 rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-5 text-slate-600">
+                      Đang cập nhật nội dung chi tiết. Chưa có chỉ số hoặc thành
+                      tựu bổ sung để hiển thị.
+                    </p>
+                  )}
+                </>
               )}
             </motion.div>
           </motion.div>

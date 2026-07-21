@@ -14,11 +14,31 @@ export type Project = {
   achievements: string[];
   tags: string[];
   images: ProjectImages;
+  caseStudy?: ProjectCaseStudy;
 };
 
 export type PortfolioImage = {
   src: string;
   alt: string;
+};
+
+export type CaseStudyImage = PortfolioImage & {
+  title?: string;
+  caption: string;
+};
+
+export type CaseStudySection = {
+  id: string;
+  title: string;
+  eyebrow: string;
+  description: string;
+  layout: "website" | "two-up" | "wide" | "kpi";
+  images: CaseStudyImage[];
+};
+
+export type ProjectCaseStudy = {
+  hero: CaseStudyImage;
+  sections: CaseStudySection[];
 };
 
 export type ProjectImages = {
@@ -110,8 +130,8 @@ export const portfolio = {
       ],
       images: {
         cover: {
-          src: "/images/projects/tetratoys/cover.svg",
-          alt: "Ảnh bìa dự án Tetra Toys",
+          src: "/images/projects/tetratoys/trangchutetratoys.png",
+          alt: "Trang chủ website Tetra Toys",
         },
         gallery: [
           {
@@ -120,6 +140,155 @@ export const portfolio = {
           },
         ],
         screenshots: [],
+      },
+      caseStudy: {
+        hero: {
+          src: "/images/projects/tetratoys/trangchutetratoys.png",
+          alt: "Trang chủ website Tetra Toys",
+          title: "Trang chủ Tetra Toys",
+          caption:
+            "Điểm chạm chính của dự án, giới thiệu sản phẩm và định hướng trải nghiệm mua sắm.",
+        },
+        sections: [
+          {
+            id: "website",
+            title: "Website",
+            eyebrow: "Nền tảng owned media",
+            description:
+              "Website được trình bày như trung tâm nội dung và chuyển đổi, kết nối thông tin sản phẩm, bài viết và hành trình mua hàng.",
+            layout: "website",
+            images: [
+              {
+                src: "/images/projects/tetratoys/trangchutetratoys.png",
+                alt: "Trang chủ website Tetra Toys",
+                title: "Trang chủ",
+                caption: "Không gian giới thiệu thương hiệu và danh mục sản phẩm.",
+              },
+              {
+                src: "/images/projects/tetratoys/chitietsanpham.png",
+                alt: "Trang chi tiết sản phẩm Tetra Toys",
+                title: "Chi tiết sản phẩm",
+                caption: "Nội dung sản phẩm được tổ chức để hỗ trợ quyết định mua.",
+              },
+              {
+                src: "/images/projects/tetratoys/trangblogweb.png",
+                alt: "Trang blog website Tetra Toys",
+                title: "Blog",
+                caption: "Kênh nội dung hỗ trợ SEO và giáo dục khách hàng.",
+              },
+            ],
+          },
+          {
+            id: "seo",
+            title: "SEO",
+            eyebrow: "Đo lường tìm kiếm",
+            description:
+              "Theo dõi hiệu quả website bằng Google Search Console và Google Analytics để quan sát hành vi tìm kiếm và truy cập.",
+            layout: "two-up",
+            images: [
+              {
+                src: "/images/projects/tetratoys/ggsearch console web.png",
+                alt: "Báo cáo Google Search Console của website Tetra Toys",
+                title: "Google Search Console",
+                caption: "Theo dõi hiệu suất hiển thị và lượt nhấp từ tìm kiếm.",
+              },
+              {
+                src: "/images/projects/tetratoys/gganalytics web.png",
+                alt: "Báo cáo Google Analytics của website Tetra Toys",
+                title: "Google Analytics",
+                caption: "Quan sát lưu lượng truy cập và hành vi người dùng trên website.",
+              },
+            ],
+          },
+          {
+            id: "facebook",
+            title: "Facebook",
+            eyebrow: "Kênh social",
+            description:
+              "Facebook được sử dụng để triển khai nội dung, tăng điểm chạm thương hiệu và hỗ trợ chiến dịch quảng cáo.",
+            layout: "two-up",
+            images: [
+              {
+                src: "/images/projects/tetratoys/baidangfb.png",
+                alt: "Bài đăng Facebook của Tetra Toys",
+                title: "Bài đăng Facebook",
+                caption: "Nội dung social phục vụ nhận diện và tương tác.",
+              },
+              {
+                src: "/images/projects/tetratoys/fbads.png",
+                alt: "Giao diện Facebook Ads của Tetra Toys",
+                title: "Facebook Ads",
+                caption: "Thiết lập quảng cáo để mở rộng phạm vi tiếp cận.",
+              },
+            ],
+          },
+          {
+            id: "tiktok-shop",
+            title: "TikTok Shop",
+            eyebrow: "Social commerce",
+            description:
+              "TikTok Shop kết hợp nội dung video, giỏ hàng sản phẩm và phiên live để tạo hành trình mua sắm trực tiếp.",
+            layout: "two-up",
+            images: [
+              {
+                src: "/images/projects/tetratoys/gắn sản phẩm vào video giỏ hàng tiktok.png",
+                alt: "Gắn sản phẩm vào video và giỏ hàng TikTok",
+                title: "Gắn sản phẩm vào video",
+                caption: "Liên kết nội dung video với sản phẩm để rút ngắn hành trình mua.",
+              },
+              {
+                src: "/images/projects/tetratoys/doanhsophienlivetiktok.png",
+                alt: "Doanh số phiên live TikTok của Tetra Toys",
+                title: "Phiên live TikTok",
+                caption: "Theo dõi hiệu quả phiên live trong hoạt động bán hàng.",
+              },
+            ],
+          },
+          {
+            id: "shopee",
+            title: "Shopee",
+            eyebrow: "Marketplace",
+            description:
+              "Gian hàng Shopee là kênh bán hàng chính để vận hành sản phẩm, voucher và các chương trình khuyến mãi.",
+            layout: "wide",
+            images: [
+              {
+                src: "/images/projects/tetratoys/giaodiengianghangshopee.png",
+                alt: "Giao diện gian hàng Shopee của Tetra Toys",
+                title: "Gian hàng Shopee",
+                caption: "Giao diện gian hàng phục vụ bán hàng và điều hướng sản phẩm.",
+              },
+            ],
+          },
+          {
+            id: "campaign-results",
+            title: "Campaign Results",
+            eyebrow: "Tổng hợp hiệu quả",
+            description:
+              "Các màn hình kết quả được đặt ở kích thước lớn để thể hiện rõ dữ liệu từ Shopee, TikTok Shop và Facebook.",
+            layout: "kpi",
+            images: [
+              {
+                src: "/images/projects/tetratoys/tongquanvequangcaochaytrenshopee.png",
+                alt: "Tổng quan quảng cáo chạy trên Shopee",
+                title: "Shopee Ads",
+                caption: "Tổng quan hiệu quả quảng cáo trên Shopee.",
+              },
+              {
+                src: "/images/projects/tetratoys/phantichdoanhthutiktokshop.png",
+                alt: "Phân tích doanh thu TikTok Shop",
+                title: "TikTok Shop",
+                caption: "Phân tích doanh thu từ kênh TikTok Shop.",
+              },
+              {
+                src: "/images/projects/tetratoys/songuoitiepcantrenfanpagefb.png",
+                alt: "Số người tiếp cận trên fanpage Facebook",
+                title: "Facebook Reach",
+                caption: "Theo dõi phạm vi tiếp cận trên fanpage Facebook.",
+              },
+            ],
+          },
+        ],
       },
     },
     {
