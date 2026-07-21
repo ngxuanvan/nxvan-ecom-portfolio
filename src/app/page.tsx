@@ -40,13 +40,35 @@ function SectionHeading({
         {eyebrow}
       </p>
       <h2
-        className={`text-balance mt-4 text-4xl font-semibold leading-none tracking-tight md:text-6xl ${
+        className={`text-balance mt-4 text-4xl font-semibold leading-[1.08] tracking-tight md:text-6xl md:leading-[1.02] ${
           tone === "dark" ? "text-white" : "text-[#0F1B33]"
         }`}
       >
         {title}
       </h2>
     </div>
+  );
+}
+
+const aboutHighlightPattern =
+  /(Thương mại điện tử|Google Search Console|Google Analytics|E-commerce|SEO)/g;
+const aboutHighlightKeywords = new Set([
+  "Thương mại điện tử",
+  "SEO",
+  "Google Analytics",
+  "Google Search Console",
+  "E-commerce",
+]);
+
+function HighlightProfessionalKeywords({ text }: { text: string }) {
+  return text.split(aboutHighlightPattern).map((part, index) =>
+    aboutHighlightKeywords.has(part) ? (
+      <span key={`${part}-${index}`} className="font-semibold text-[#2563EB]">
+        {part}
+      </span>
+    ) : (
+      part
+    ),
   );
 }
 
@@ -74,7 +96,9 @@ export default function Home() {
           <div>
             <div className="space-y-6 text-lg leading-8 text-slate-600">
               {portfolio.about.paragraphs.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
+                <p key={paragraph}>
+                  <HighlightProfessionalKeywords text={paragraph} />
+                </p>
               ))}
             </div>
             <StaggerGroup className="mt-12 grid gap-4 sm:grid-cols-3">
@@ -336,7 +360,7 @@ export default function Home() {
         <div className="mx-auto flex max-w-7xl flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="font-semibold text-[#0F1B33]">{person.name}</p>
-            <p className="mt-1">© 2026 Nguyễn Xuân Văn. Được xây dựng bằng Next.js.</p>
+            <p className="mt-1">© 2026 Nguyễn Xuân Văn.</p>
           </div>
           <nav aria-label="Điều hướng chân trang" className="flex flex-wrap gap-x-4 gap-y-2">
             {portfolio.nav.map((item) => (

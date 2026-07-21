@@ -1,7 +1,13 @@
 "use client";
 
 import { motion, useReducedMotion, type Variants } from "framer-motion";
-import { ArrowDownToLine, ArrowRight, BarChart3, Search, ShoppingBag } from "lucide-react";
+import {
+  ArrowDownToLine,
+  ArrowRight,
+  BarChart3,
+  Search,
+  ShoppingBag,
+} from "lucide-react";
 import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
@@ -32,6 +38,25 @@ const item: Variants = {
     transition: { type: "spring", stiffness: 110, damping: 23 },
   },
 };
+
+const heroHighlightPattern = /(Thương mại điện tử|E-commerce|SEO)/g;
+const heroHighlightKeywords = new Set([
+  "Thương mại điện tử",
+  "SEO",
+  "E-commerce",
+]);
+
+function HighlightHeroKeywords({ text }: { text: string }) {
+  return text.split(heroHighlightPattern).map((part, index) =>
+    heroHighlightKeywords.has(part) ? (
+      <span key={`${part}-${index}`} className="font-semibold text-[#2563EB]">
+        {part}
+      </span>
+    ) : (
+      part
+    ),
+  );
+}
 
 export function HeroSection({
   name,
@@ -73,7 +98,7 @@ export function HeroSection({
           variants={reduceMotion ? undefined : item}
           className="text-pretty mt-7 max-w-2xl text-lg leading-8 text-slate-600"
         >
-          {description}
+          <HighlightHeroKeywords text={description} />
         </motion.p>
         <motion.div
           variants={reduceMotion ? undefined : item}
@@ -121,7 +146,7 @@ export function HeroSection({
         transition={{ type: "spring", stiffness: 95, damping: 24, delay: 0.28 }}
       >
         <motion.div
-          className="absolute -left-4 top-10 hidden h-36 w-36 rounded-[2rem] border border-blue-100 bg-blue-50/80 md:block"
+          className="absolute -left-4 top-14 hidden h-24 w-24 rounded-[1.5rem] border border-blue-100 bg-blue-50/60 md:block"
           animate={
             reduceMotion
               ? undefined
@@ -136,27 +161,146 @@ export function HeroSection({
             ease: "easeInOut",
           }}
         />
-        <div className="relative overflow-hidden rounded-[2.5rem] border border-slate-200 bg-slate-50 shadow-[0_34px_100px_-60px_rgba(15,27,51,0.55)]">
-          <Image
-            src={profileImage}
-            alt="Ảnh hồ sơ minh họa của Nguyễn Xuân Văn"
-            width={720}
-            height={840}
-            priority
-            className="h-auto w-full"
-          />
-        </div>
         <motion.div
-          className="absolute -bottom-6 right-4 rounded-3xl border border-slate-200 bg-white px-5 py-4 shadow-[0_22px_70px_-42px_rgba(15,27,51,0.38)]"
-          initial={reduceMotion ? false : { opacity: 0, y: 14 }}
-          animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-          transition={{ type: "spring", stiffness: 110, damping: 22, delay: 0.5 }}
-        >
-          <p className="text-sm font-medium tracking-normal text-slate-500">GPA</p>
-          <p className="mt-1 text-2xl font-semibold tracking-normal text-[#0F1B33] proportional-nums">
-            3.71 / 4.00
-          </p>
-        </motion.div>
+          aria-hidden="true"
+          className="absolute -right-4 bottom-36 hidden h-20 w-20 rounded-full border border-blue-200/70 bg-[radial-gradient(circle,rgba(37,99,235,0.12),transparent_65%)] md:block"
+          animate={
+            reduceMotion ? undefined : { y: [0, 4, 0], scale: [1, 1.03, 1] }
+          }
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <div className="group/hero-image relative aspect-[4/5] overflow-hidden rounded-[2.5rem] border border-blue-100 bg-white/82 p-3 shadow-[0_38px_110px_-62px_rgba(15,27,51,0.58)] backdrop-blur transition duration-500 hover:shadow-[0_42px_120px_-62px_rgba(15,27,51,0.64)]">
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-[linear-gradient(rgba(37,99,235,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(37,99,235,0.045)_1px,transparent_1px)] bg-[size:36px_36px]"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-[radial-gradient(circle_at_50%_34%,rgba(37,99,235,0.12),transparent_34%),radial-gradient(circle_at_86%_78%,rgba(37,99,235,0.08),transparent_24%)]"
+          />
+          <div
+            aria-hidden="true"
+            className="hero-orbit-ring absolute left-1/2 top-[21%] h-56 w-56 -translate-x-1/2 rounded-full border border-blue-200/45"
+          >
+            <span className="absolute -right-1 top-1/2 h-2 w-2 rounded-full bg-[#2563EB]/55 shadow-[0_0_18px_rgba(37,99,235,0.22)]" />
+          </div>
+          <span
+            aria-hidden="true"
+            className="absolute left-[24%] top-[28%] h-px w-24 origin-left rotate-[14deg] bg-gradient-to-r from-[#2563EB]/20 to-transparent"
+          />
+          <span
+            aria-hidden="true"
+            className="absolute right-[18%] top-[42%] h-px w-20 origin-right -rotate-[20deg] bg-gradient-to-l from-[#2563EB]/16 to-transparent"
+          />
+          <span
+            aria-hidden="true"
+            className="absolute bottom-[25%] left-[22%] h-px w-20 origin-left -rotate-[12deg] bg-gradient-to-r from-[#2563EB]/16 to-transparent"
+          />
+          {[
+            "left-[20%] top-[20%]",
+            "right-[24%] top-[30%]",
+            "left-[15%] bottom-[33%]",
+            "right-[18%] bottom-[26%]",
+            "left-[48%] top-[13%]",
+          ].map((position, index) => (
+            <motion.span
+              key={position}
+              aria-hidden="true"
+              className={`absolute h-1.5 w-1.5 rounded-full bg-[#2563EB]/35 ${position}`}
+              animate={reduceMotion ? undefined : { y: [0, index % 2 ? -4 : 4, 0] }}
+              transition={{
+                duration: 5 + index,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
+          ))}
+          <span
+            aria-hidden="true"
+            className="absolute left-5 top-5 h-8 w-8 border-l border-t border-[#2563EB]/35"
+          />
+          <span
+            aria-hidden="true"
+            className="absolute right-5 top-5 h-8 w-8 border-r border-t border-[#2563EB]/35"
+          />
+          <span
+            aria-hidden="true"
+            className="absolute bottom-5 left-5 h-8 w-8 border-b border-l border-[#2563EB]/35"
+          />
+          <span
+            aria-hidden="true"
+            className="absolute bottom-5 right-5 h-8 w-8 border-b border-r border-[#2563EB]/35"
+          />
+          <motion.div
+            className="absolute left-1/2 top-[7%] z-20 hidden -translate-x-1/2 rounded-2xl border border-blue-100 bg-white/88 px-4 py-2.5 shadow-[0_18px_50px_-38px_rgba(15,27,51,0.42)] backdrop-blur md:block"
+            initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+            animate={reduceMotion ? undefined : { opacity: 1, y: [0, -3, 0] }}
+            transition={{
+              opacity: { type: "spring", stiffness: 120, damping: 22, delay: 0.45 },
+              y: { duration: 5.5, repeat: Infinity, ease: "easeInOut" },
+            }}
+          >
+            <p className="text-xs font-medium text-slate-500">Focus</p>
+            <p className="mt-0.5 text-sm font-semibold text-[#0F1B33]">
+              SEO · E-commerce
+            </p>
+          </motion.div>
+          <motion.div
+            className="absolute left-1/2 top-[16%] z-10 w-[78%] -translate-x-1/2 overflow-hidden rounded-[1.85rem] border border-slate-200 bg-[linear-gradient(180deg,#f8fbff,#ffffff)] shadow-[0_28px_76px_-54px_rgba(15,27,51,0.5)]"
+            initial={reduceMotion ? false : { opacity: 0, scale: 0.96, y: 12 }}
+            animate={reduceMotion ? undefined : { opacity: 1, scale: 1, y: 0 }}
+            transition={{ type: "spring", stiffness: 110, damping: 24, delay: 0.34 }}
+          >
+            <div
+              aria-hidden="true"
+              className="hero-scan-light absolute inset-x-[-35%] top-0 z-10 h-20 bg-gradient-to-b from-transparent via-white/55 to-transparent"
+            />
+            <Image
+              src={profileImage}
+              alt="Ảnh hồ sơ minh họa của Nguyễn Xuân Văn"
+              width={720}
+              height={840}
+              priority
+              className="aspect-[4/5] w-full object-contain object-top transition duration-700 group-hover/hero-image:scale-[1.02]"
+            />
+            <div
+              aria-hidden="true"
+              className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-white via-white/70 to-transparent"
+            />
+          </motion.div>
+          <motion.div
+            className="absolute bottom-[8%] left-8 z-20 hidden rounded-2xl border border-blue-100 bg-white/88 px-4 py-2.5 shadow-[0_18px_50px_-38px_rgba(15,27,51,0.42)] backdrop-blur md:block"
+            initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+            animate={reduceMotion ? undefined : { opacity: 1, y: [0, 3, 0] }}
+            transition={{
+              opacity: { type: "spring", stiffness: 120, damping: 22, delay: 0.58 },
+              y: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+            }}
+          >
+            <p className="text-xs font-medium text-slate-500">
+              Google Analytics
+            </p>
+            <p className="mt-0.5 text-sm font-semibold text-[#2563EB]">
+              Tracking ready
+            </p>
+          </motion.div>
+          <motion.div
+            className="absolute bottom-[8%] right-8 z-20 hidden rounded-2xl border border-blue-100 bg-white/88 px-4 py-2.5 shadow-[0_18px_50px_-38px_rgba(15,27,51,0.42)] backdrop-blur md:block"
+            initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+            animate={reduceMotion ? undefined : { opacity: 1, y: [0, -3, 0] }}
+            transition={{
+              opacity: { type: "spring", stiffness: 120, damping: 22, delay: 0.66 },
+              y: { duration: 6.4, repeat: Infinity, ease: "easeInOut" },
+            }}
+          >
+            <p className="text-xs font-medium text-slate-500">
+              Google Search Console
+            </p>
+            <p className="mt-0.5 text-sm font-semibold text-[#2563EB]">
+              Search insights
+            </p>
+          </motion.div>
+        </div>
       </motion.div>
     </section>
   );

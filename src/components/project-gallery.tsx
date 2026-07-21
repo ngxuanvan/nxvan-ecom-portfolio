@@ -10,9 +10,14 @@ import type { PortfolioImage } from "@/data/portfolio";
 type ProjectGalleryProps = {
   images: PortfolioImage[];
   projectTitle: string;
+  enableLightbox?: boolean;
 };
 
-export function ProjectGallery({ images, projectTitle }: ProjectGalleryProps) {
+export function ProjectGallery({
+  images,
+  projectTitle,
+  enableLightbox = true,
+}: ProjectGalleryProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const titleId = useId();
   const reduceMotion = useReducedMotion();
@@ -69,6 +74,52 @@ export function ProjectGallery({ images, projectTitle }: ProjectGalleryProps) {
             Thêm ảnh vào dữ liệu dự án để hiển thị thư viện.
           </p>
         </div>
+      </div>
+    );
+  }
+
+  if (!enableLightbox) {
+    return (
+      <div
+        className={`grid gap-3 ${
+          images.length > 1 ? "sm:grid-cols-2" : "grid-cols-1"
+        }`}
+      >
+        {images.map((image, index) => (
+          <motion.div
+            key={image.src}
+            className={`group relative overflow-hidden rounded-[1.75rem] border border-slate-200 bg-slate-50 shadow-[0_18px_56px_-44px_rgba(15,27,51,0.42)] ${
+              index === 0 && images.length > 2 ? "sm:col-span-2" : ""
+            }`}
+            whileHover={
+              reduceMotion
+                ? undefined
+                : {
+                    y: -3,
+                    boxShadow: "0 22px 60px -42px rgba(15,27,51,0.5)",
+                  }
+            }
+            transition={{ type: "spring", stiffness: 260, damping: 24 }}
+          >
+            <span
+              className={`relative block ${
+                images.length === 1 ? "aspect-[16/9]" : "aspect-[16/10]"
+              }`}
+            >
+              <Image
+                src={image.src}
+                alt={image.alt}
+                fill
+                sizes={
+                  index === 0 && images.length > 2
+                    ? "(min-width: 1024px) 58vw, 100vw"
+                    : "(min-width: 640px) 45vw, 100vw"
+                }
+                className="object-cover transition duration-500 group-hover:scale-[1.025]"
+              />
+            </span>
+          </motion.div>
+        ))}
       </div>
     );
   }

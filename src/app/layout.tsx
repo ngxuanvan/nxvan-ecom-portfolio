@@ -27,6 +27,11 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Nguyễn Xuân Văn" }],
   creator: "Nguyễn Xuân Văn",
+  icons: {
+    icon: "/logo_van_favicon.png",
+    shortcut: "/logo_van_favicon.png",
+    apple: "/logo_van_favicon.png",
+  },
   openGraph: {
     title: "Nguyễn Xuân Văn | E-commerce & Digital Marketing",
     description:

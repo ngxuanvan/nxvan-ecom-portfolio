@@ -14,12 +14,18 @@ export type Project = {
   achievements: string[];
   tags: string[];
   images: ProjectImages;
+  websiteUrl?: string;
+  paymentProviders?: PaymentProvider[];
   caseStudy?: ProjectCaseStudy;
 };
 
 export type PortfolioImage = {
   src: string;
   alt: string;
+};
+
+export type EvidenceImage = PortfolioImage & {
+  caption: string;
 };
 
 export type CaseStudyImage = PortfolioImage & {
@@ -47,6 +53,14 @@ export type ProjectImages = {
   screenshots: PortfolioImage[];
 };
 
+export type PaymentProvider = {
+  name: string;
+  logo: PortfolioImage & {
+    width: number;
+    height: number;
+  };
+};
+
 export const portfolio = {
   site: {
     ogImage: "/images/og-image.svg",
@@ -58,7 +72,7 @@ export const portfolio = {
     phone: "0383 937 939",
     location: "Quận 10, TP. Hồ Chí Minh",
     cvPath: "/cv/nguyen-xuan-van-cv.pdf",
-    profileImage: "/images/profile/profile-placeholder.svg",
+    profileImage: "/images/profile/nxvan(1080 x 1080 px).png",
     social: {
       linkedin: "https://www.linkedin.com/in/placeholder-nguyen-xuan-van",
       github: "https://github.com/placeholder-nguyen-xuan-van",
@@ -83,7 +97,7 @@ export const portfolio = {
       "Tôi có kinh nghiệm về SEO, quản trị website, Google Analytics, Google Search Console và triển khai các dự án E-commerce. Tôi quan tâm đến việc kết hợp dữ liệu, nội dung và trải nghiệm người dùng để nâng cao hiệu quả kinh doanh trên nền tảng số.",
     ],
     stats: [
-      { label: "GPA đại học", value: "3.71 / 4.00" },
+      { label: "GPA đại học", value: "3.77 / 4.00" },
       { label: "Dự án nổi bật", value: "2+" },
       { label: "Lĩnh vực", value: "SEO & E-commerce" },
     ],
@@ -96,6 +110,30 @@ export const portfolio = {
       src: "/images/experience/duong-gia-phat/cover.svg",
       alt: "Ảnh minh họa kinh nghiệm SEO tại Dương Gia Phát",
     },
+    evidenceIntro:
+      "Một số tài liệu minh họa quá trình nghiên cứu từ khóa, theo dõi thứ hạng nội dung và triển khai backlink trong thời gian làm việc.",
+    evidenceImages: [
+      {
+        src: "/images/experience/duong-gia-phat/nghiên cứu từ khoá, nhóm từ khoá.png",
+        alt: "Bảng nghiên cứu và phân nhóm từ khóa trong quá trình làm SEO tại Dương Gia Phát",
+        caption: "Nghiên cứu và phân nhóm từ khóa",
+      },
+      {
+        src: "/images/experience/duong-gia-phat/Theo dõi thứ hạng từ khóa.png",
+        alt: "Bảng theo dõi thứ hạng từ khóa trong quá trình làm SEO tại Dương Gia Phát",
+        caption: "Theo dõi thứ hạng từ khóa",
+      },
+      {
+        src: "/images/experience/duong-gia-phat/key đẩy bài viết đang top.png",
+        alt: "Bảng theo dõi từ khóa và bài viết đang xếp hạng tại Dương Gia Phát",
+        caption: "Theo dõi từ khóa và bài viết đang xếp hạng",
+      },
+      {
+        src: "/images/experience/duong-gia-phat/báo cáo backlink đẩy top site chính.png",
+        alt: "Bảng báo cáo backlink hỗ trợ website chính tại Dương Gia Phát",
+        caption: "Báo cáo backlink hỗ trợ website chính",
+      },
+    ],
     bullets: [
       "Nghiên cứu từ khóa và phân tích đối thủ bằng Semrush; xây dựng 5 nhóm từ khóa theo danh mục sản phẩm và ý định tìm kiếm.",
       "Viết và tối ưu 25 bài viết chuẩn SEO cho website công ty.",
@@ -111,6 +149,7 @@ export const portfolio = {
       category: "Dự án E-commerce & Digital Marketing",
       role: "Team Leader",
       time: "08/2023 – 12/2023",
+      websiteUrl: "https://dochoimohinh.com.vn/",
       description:
         "Điều phối hoạt động Digital Marketing trên Shopee, TikTok Shop, Facebook và website; phân công nhiệm vụ, theo dõi tiến độ và kiểm tra chất lượng đầu việc.",
       achievements: [
@@ -296,6 +335,7 @@ export const portfolio = {
       title: "ReSip",
       category: "Dự án phát triển website E-commerce",
       time: "01/2026 – 04/2026",
+      websiteUrl: "https://dotnet.resip.io.vn/",
       description:
         "Phát triển hệ thống website E-commerce với chức năng quản lý đơn hàng và thanh toán trực tuyến.",
       achievements: [
@@ -314,30 +354,46 @@ export const portfolio = {
       ],
       images: {
         cover: {
-          src: "/images/projects/resip/cover.svg",
-          alt: "Ảnh bìa dự án ReSip",
+          src: "/images/projects/resip/trangchuresip.png",
+          alt: "Trang chủ website ReSip",
         },
         gallery: [
           {
-            src: "/images/projects/resip/01-checkout.svg",
-            alt: "Màn hình minh họa thanh toán và đồng bộ đơn hàng ReSip",
+            src: "/images/projects/resip/dotnet_resip_epayment.png",
+            alt: "Màn hình thanh toán trực tuyến của ReSip",
           },
         ],
         screenshots: [],
       },
-    },
-    {
-      id: "seo-case-study",
-      title: "SEO Case Study",
-      category: "Đang cập nhật",
-      status: "Đang cập nhật",
-      description: "Nội dung chi tiết của SEO Case Study đang được cập nhật.",
-      achievements: [],
-      tags: ["SEO"],
-      images: {
-        gallery: [],
-        screenshots: [],
-      },
+      paymentProviders: [
+        {
+          name: "MoMo",
+          logo: {
+            src: "/images/projects/resip/payments/logo momo.jpeg",
+            alt: "Logo MoMo",
+            width: 541,
+            height: 369,
+          },
+        },
+        {
+          name: "VNPay",
+          logo: {
+            src: "/images/projects/resip/payments/vnpay.svg",
+            alt: "Logo VNPay",
+            width: 103,
+            height: 31,
+          },
+        },
+        {
+          name: "PayPal",
+          logo: {
+            src: "/images/projects/resip/payments/logopaypal.jpeg",
+            alt: "Logo PayPal",
+            width: 547,
+            height: 365,
+          },
+        },
+      ],
     },
   ] satisfies Project[],
   skills: [
@@ -389,7 +445,7 @@ export const portfolio = {
       ],
       gpa: {
         label: "GPA",
-        value: "3.71 / 4.00",
+        value: "3.77 / 4.00",
       },
     },
     {

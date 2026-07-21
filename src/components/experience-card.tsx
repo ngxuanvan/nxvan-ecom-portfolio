@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 
+import { ExperienceGallery } from "@/components/experience-gallery";
 import type { portfolio } from "@/data/portfolio";
 
 type ExperienceCardProps = {
@@ -13,8 +14,8 @@ export function ExperienceCard({ experience }: ExperienceCardProps) {
   const reduceMotion = useReducedMotion();
   const kpis = [
     { value: "5", label: "nhóm từ khóa" },
-    { value: "25", label: "bài viết chuẩn SEO" },
-    { value: "35", label: "sản phẩm cập nhật" },
+    { value: "25", label: "bài SEO" },
+    { value: "35", label: "sản phẩm" },
   ];
 
   return (
@@ -114,6 +115,10 @@ export function ExperienceCard({ experience }: ExperienceCardProps) {
           </div>
         </div>
       </div>
+      <ExperienceGallery
+        images={experience.evidenceImages}
+        intro={experience.evidenceIntro}
+      />
     </motion.article>
   );
 }

@@ -1,10 +1,11 @@
 "use client";
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowUpRight, CheckCircle2, Clock3, X } from "lucide-react";
+import { ArrowUpRight, CheckCircle2, Clock3, ExternalLink, X } from "lucide-react";
 import { useEffect, useId, useState } from "react";
 
 import { ProjectGallery } from "@/components/project-gallery";
+import { PaymentProviderBadge } from "@/components/payment-provider-badge";
 import { TetraToysCaseStudy } from "@/components/tetra-toys-case-study";
 import { Button } from "@/components/ui/button";
 import type { PortfolioImage, Project } from "@/data/portfolio";
@@ -55,9 +56,7 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
           <motion.article
             key={project.id}
             layout
-            className={`group flex flex-col overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-[0_22px_70px_-46px_rgba(15,27,51,0.38)] transition-colors hover:border-[#2563EB]/35 ${
-              index === 0 ? "lg:row-span-2" : ""
-            }`}
+            className="group flex flex-col overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-[0_22px_70px_-46px_rgba(15,27,51,0.38)] transition-colors hover:border-[#2563EB]/35"
             initial={reduceMotion ? false : { opacity: 0, y: 24 }}
             whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
             whileHover={
@@ -78,7 +77,7 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
           >
             {(() => {
               const previewImages =
-                project.caseStudy && project.images.cover
+                project.images.cover
                   ? [project.images.cover]
                   : getGalleryImages(project);
 
@@ -87,6 +86,7 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
                   <ProjectGallery
                     images={previewImages}
                     projectTitle={project.title}
+                    enableLightbox={false}
                   />
                 </div>
               );
@@ -113,6 +113,21 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
               <p className="text-pretty mt-4 max-w-2xl text-base leading-7 text-slate-600">
                 {project.description}
               </p>
+              {project.paymentProviders ? (
+                <div className="mt-5">
+                  <p className="mb-3 text-sm font-medium text-slate-500">
+                    Phương thức thanh toán
+                  </p>
+                  <div className="flex flex-wrap gap-3">
+                    {project.paymentProviders.map((provider) => (
+                      <PaymentProviderBadge
+                        key={provider.name}
+                        provider={provider}
+                      />
+                    ))}
+                  </div>
+                </div>
+              ) : null}
               <div className="mt-6 flex flex-wrap gap-2">
                 {project.tags.map((tag) => (
                   <motion.span
@@ -125,20 +140,39 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
                   </motion.span>
                 ))}
               </div>
-              <Button
-                type="button"
-                variant="secondary"
-                className="mt-7 self-start"
-                onClick={() => setActiveProject(project)}
-              >
-                Xem chi tiết
-                <ArrowUpRight
-                  aria-hidden="true"
-                  size={16}
-                  strokeWidth={1.8}
-                  className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                />
-              </Button>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <Button
+                  type="button"
+                  variant="secondary"
+                  className="self-start"
+                  onClick={() => setActiveProject(project)}
+                >
+                  Xem chi tiết
+                  <ArrowUpRight
+                    aria-hidden="true"
+                    size={16}
+                    strokeWidth={1.8}
+                    className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  />
+                </Button>
+                {project.websiteUrl ? (
+                  <Button asChild className="self-start">
+                    <a
+                      href={project.websiteUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Xem website
+                      <ExternalLink
+                        aria-hidden="true"
+                        size={16}
+                        strokeWidth={1.8}
+                        className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      />
+                    </a>
+                  </Button>
+                ) : null}
+              </div>
             </div>
           </motion.article>
         ))}
@@ -222,6 +256,26 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
               <p className="mt-6 text-base leading-7 text-slate-600">
                 {activeProject.description}
               </p>
+
+              {activeProject.websiteUrl ? (
+                <div className="mt-7">
+                  <Button asChild>
+                    <a
+                      href={activeProject.websiteUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Xem website
+                      <ExternalLink
+                        aria-hidden="true"
+                        size={16}
+                        strokeWidth={1.8}
+                        className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      />
+                    </a>
+                  </Button>
+                </div>
+              ) : null}
 
               {activeProject.caseStudy ? (
                 <TetraToysCaseStudy
