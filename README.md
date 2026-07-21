@@ -37,13 +37,52 @@ Local image placeholders are stored in:
 public/images/
 ```
 
-Replace these files with final optimized assets while keeping the same filenames, or update the paths in `src/data/portfolio.ts`:
+Current folder structure:
+
+```text
+public/images/profile/
+public/images/experience/
+public/images/projects/
+public/images/certificates/
+public/cv/
+```
+
+Each experience should have its own folder, for example:
+
+```text
+public/images/experience/duong-gia-phat/
+```
+
+Project galleries are read from slug-based folders:
+
+```text
+public/images/projects/{project-slug}/
+```
+
+For example:
+
+```text
+public/images/projects/tetratoys/
+public/images/projects/resip/
+public/images/projects/seo-case-study/
+```
+
+Do not hardcode image paths inside React components. Store every image path in `src/data/portfolio.ts` under each project’s `images` object:
+
+```ts
+images: {
+  cover: { src: "/images/projects/example/cover.webp", alt: "..." },
+  gallery: [{ src: "/images/projects/example/01-overview.webp", alt: "..." }],
+  screenshots: []
+}
+```
+
+The gallery automatically renders every image defined in `cover`, `gallery`, and `screenshots`. If no images are defined, the website displays a clean placeholder automatically.
+
+Replace shared files with final optimized assets while keeping the same filenames, or update the paths in `src/data/portfolio.ts`:
 
 ```text
 profile-placeholder.svg
-project-tetra-toys.svg
-project-resip.svg
-project-seo-case-study.svg
 og-image.svg
 ```
 

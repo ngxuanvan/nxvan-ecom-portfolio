@@ -7,7 +7,9 @@ export default function NotFound() {
   return (
     <main className="grid min-h-[100dvh] place-items-center bg-[#f7f5f0] px-4 text-stone-950">
       <section className="max-w-lg border-t border-stone-300 pt-8">
-        <p className="font-mono text-xs uppercase text-stone-500">404</p>
+        <p className="text-xs font-semibold uppercase tracking-normal text-stone-500 proportional-nums">
+          404
+        </p>
         <h1 className="mt-4 text-3xl font-semibold tracking-tight">
           Đường dẫn này không có trong portfolio.
         </h1>

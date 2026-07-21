@@ -26,7 +26,7 @@ function SectionHeading({
 }) {
   return (
     <div className="max-w-3xl">
-      <p className="font-mono text-sm font-medium uppercase text-[#2563EB]">
+      <p className="text-sm font-semibold uppercase tracking-normal text-[#2563EB] proportional-nums">
         {eyebrow}
       </p>
       <h2 className="mt-4 text-4xl font-semibold leading-none tracking-tight text-[#0F1B33] md:text-6xl">
@@ -118,9 +118,13 @@ export default function Home() {
               className="h-auto w-full"
             />
           </div>
-          <div className="absolute -bottom-6 right-4 rounded-3xl border border-slate-200 bg-white p-5 shadow-[0_22px_70px_-42px_rgba(15,27,51,0.38)]">
-            <p className="font-mono text-sm text-slate-500">GPA</p>
-            <p className="mt-1 text-3xl font-semibold text-[#0F1B33]">3.71/4</p>
+          <div className="absolute -bottom-6 right-4 rounded-3xl border border-slate-200 bg-white px-5 py-4 shadow-[0_22px_70px_-42px_rgba(15,27,51,0.38)]">
+            <p className="text-sm font-medium tracking-normal text-slate-500">
+              GPA
+            </p>
+            <p className="mt-1 text-2xl font-semibold tracking-normal text-[#0F1B33] proportional-nums">
+              3.71 / 4.00
+            </p>
           </div>
         </div>
       </section>
@@ -143,7 +147,7 @@ export default function Home() {
                   key={stat.label}
                   className="rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_18px_50px_-38px_rgba(15,27,51,0.35)]"
                 >
-                  <p className="font-mono text-2xl font-semibold text-[#0F1B33]">
+                  <p className="text-2xl font-semibold tracking-normal text-[#0F1B33] proportional-nums">
                     {stat.value}
                   </p>
                   <p className="mt-2 text-sm text-slate-500">{stat.label}</p>
@@ -164,7 +168,7 @@ export default function Home() {
             <div className="absolute bottom-8 left-8 top-8 hidden w-px bg-blue-100 sm:block" />
             <div className="relative sm:pl-12">
               <div className="absolute left-[-3.25rem] top-1 hidden h-4 w-4 rounded-full border-4 border-white bg-[#2563EB] shadow-[0_0_0_1px_rgba(37,99,235,0.25)] sm:block" />
-              <p className="text-sm font-medium text-[#2563EB]">
+              <p className="text-sm font-semibold tracking-normal text-[#2563EB] proportional-nums">
                 {portfolio.experience.time}
               </p>
               <h3 className="mt-3 text-3xl font-semibold tracking-tight">
@@ -173,6 +177,15 @@ export default function Home() {
               <p className="mt-2 text-base font-medium text-slate-600">
                 {portfolio.experience.company}
               </p>
+              <div className="relative mt-8 overflow-hidden rounded-[1.75rem] border border-slate-200 bg-slate-50">
+                <Image
+                  src={portfolio.experience.image.src}
+                  alt={portfolio.experience.image.alt}
+                  width={980}
+                  height={640}
+                  className="h-auto w-full"
+                />
+              </div>
               <ul className="mt-8 grid gap-4">
                 {portfolio.experience.bullets.map((bullet) => (
                   <li key={bullet} className="flex gap-3 text-slate-700">
@@ -204,7 +217,7 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr]">
             <div>
-              <p className="font-mono text-sm font-medium uppercase text-blue-200">
+              <p className="text-sm font-semibold uppercase tracking-normal text-blue-200 proportional-nums">
                 04
               </p>
               <h2 className="mt-4 text-4xl font-semibold leading-none tracking-tight md:text-6xl">
@@ -257,11 +270,18 @@ export default function Home() {
                 <h3 className="mt-8 text-2xl font-semibold tracking-tight">
                   {item.school}
                 </h3>
-                <p className="mt-4 text-sm font-medium text-[#2563EB]">
+                <p className="mt-4 text-sm font-semibold tracking-normal text-[#2563EB] proportional-nums">
                   {item.time}
                 </p>
                 <p className="mt-5 text-slate-600">{item.major}</p>
-                <p className="mt-2 font-mono text-slate-700">{item.gpa}</p>
+                <div className="mt-5 border-t border-slate-100 pt-5">
+                  <p className="text-sm font-medium tracking-normal text-slate-500">
+                    {item.gpa.label}
+                  </p>
+                  <p className="mt-1 text-2xl font-semibold tracking-normal text-[#0F1B33] proportional-nums">
+                    {item.gpa.value}
+                  </p>
+                </div>
               </article>
             ))}
           </div>
@@ -271,7 +291,7 @@ export default function Home() {
       <MotionSection id="lien-he" className="border-t border-slate-200 py-20">
         <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[1fr_0.8fr] lg:px-8">
           <div>
-            <p className="font-mono text-sm font-medium uppercase text-[#2563EB]">
+            <p className="text-sm font-semibold uppercase tracking-normal text-[#2563EB] proportional-nums">
               06
             </p>
             <h2 className="mt-4 max-w-3xl text-4xl font-semibold leading-none tracking-tight md:text-6xl">

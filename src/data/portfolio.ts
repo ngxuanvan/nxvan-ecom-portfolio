@@ -10,13 +10,27 @@ export type Project = {
   role?: string;
   time?: string;
   status?: string;
-  image: string;
   description: string;
   achievements: string[];
   tags: string[];
+  images: ProjectImages;
+};
+
+export type PortfolioImage = {
+  src: string;
+  alt: string;
+};
+
+export type ProjectImages = {
+  cover?: PortfolioImage;
+  gallery: PortfolioImage[];
+  screenshots: PortfolioImage[];
 };
 
 export const portfolio = {
+  site: {
+    ogImage: "/images/og-image.svg",
+  },
   person: {
     name: "Nguyễn Xuân Văn",
     title: "Thực tập sinh E-commerce & Digital Marketing",
@@ -24,7 +38,7 @@ export const portfolio = {
     phone: "0383 937 939",
     location: "Quận 10, TP. Hồ Chí Minh",
     cvPath: "/cv/nguyen-xuan-van-cv.pdf",
-    profileImage: "/images/profile-placeholder.svg",
+    profileImage: "/images/profile/profile-placeholder.svg",
     social: {
       linkedin: "https://www.linkedin.com/in/placeholder-nguyen-xuan-van",
       github: "https://github.com/placeholder-nguyen-xuan-van",
@@ -49,7 +63,7 @@ export const portfolio = {
       "Tôi có kinh nghiệm về SEO, quản trị website, Google Analytics, Google Search Console và triển khai các dự án E-commerce. Tôi quan tâm đến việc kết hợp dữ liệu, nội dung và trải nghiệm người dùng để nâng cao hiệu quả kinh doanh trên nền tảng số.",
     ],
     stats: [
-      { label: "GPA đại học", value: "3.71/4" },
+      { label: "GPA đại học", value: "3.71 / 4.00" },
       { label: "Dự án nổi bật", value: "2+" },
       { label: "Lĩnh vực", value: "SEO & E-commerce" },
     ],
@@ -57,7 +71,11 @@ export const portfolio = {
   experience: {
     role: "Nhân viên SEO",
     company: "Công ty TNHH Thương mại & Đào tạo Dương Gia Phát",
-    time: "06/2024 - 10/2024",
+    time: "06/2024 – 10/2024",
+    image: {
+      src: "/images/experience/duong-gia-phat/cover.svg",
+      alt: "Ảnh minh họa kinh nghiệm SEO tại Dương Gia Phát",
+    },
     bullets: [
       "Nghiên cứu từ khóa và phân tích đối thủ bằng Semrush; xây dựng 5 nhóm từ khóa theo danh mục sản phẩm và ý định tìm kiếm.",
       "Viết và tối ưu 25 bài viết chuẩn SEO cho website công ty.",
@@ -72,8 +90,7 @@ export const portfolio = {
       title: "Tetra Toys",
       category: "Dự án E-commerce & Digital Marketing",
       role: "Team Leader",
-      time: "08/2023 - 12/2023",
-      image: "/images/project-tetra-toys.svg",
+      time: "08/2023 – 12/2023",
       description:
         "Điều phối hoạt động Digital Marketing trên Shopee, TikTok Shop, Facebook và website; phân công nhiệm vụ, theo dõi tiến độ và kiểm tra chất lượng đầu việc.",
       achievements: [
@@ -91,13 +108,25 @@ export const portfolio = {
         "Semrush",
         "Digital Marketing",
       ],
+      images: {
+        cover: {
+          src: "/images/projects/tetratoys/cover.svg",
+          alt: "Ảnh bìa dự án Tetra Toys",
+        },
+        gallery: [
+          {
+            src: "/images/projects/tetratoys/01-performance.svg",
+            alt: "Chỉ số hiệu quả của dự án Tetra Toys",
+          },
+        ],
+        screenshots: [],
+      },
     },
     {
       id: "resip",
       title: "ReSip",
       category: "Dự án phát triển website E-commerce",
-      time: "01/2026 - 04/2026",
-      image: "/images/project-resip.svg",
+      time: "01/2026 – 04/2026",
       description:
         "Phát triển hệ thống website E-commerce với chức năng quản lý đơn hàng và thanh toán trực tuyến.",
       achievements: [
@@ -114,16 +143,32 @@ export const portfolio = {
         "MoMo API",
         "Website Development",
       ],
+      images: {
+        cover: {
+          src: "/images/projects/resip/cover.svg",
+          alt: "Ảnh bìa dự án ReSip",
+        },
+        gallery: [
+          {
+            src: "/images/projects/resip/01-checkout.svg",
+            alt: "Màn hình minh họa thanh toán và đồng bộ đơn hàng ReSip",
+          },
+        ],
+        screenshots: [],
+      },
     },
     {
       id: "seo-case-study",
       title: "SEO Case Study",
       category: "Đang cập nhật",
       status: "Đang cập nhật",
-      image: "/images/project-seo-case-study.svg",
       description: "Nội dung chi tiết của SEO Case Study đang được cập nhật.",
       achievements: [],
       tags: ["SEO"],
+      images: {
+        gallery: [],
+        screenshots: [],
+      },
     },
   ] satisfies Project[],
   skills: [
@@ -160,15 +205,21 @@ export const portfolio = {
   education: [
     {
       school: "Đại học Kinh tế TP. Hồ Chí Minh",
-      time: "2024 - Hiện tại",
+      time: "2024 – Hiện tại",
       major: "Chuyên ngành: Thương mại điện tử",
-      gpa: "GPA: 3.71/4",
+      gpa: {
+        label: "GPA",
+        value: "3.71 / 4.00",
+      },
     },
     {
       school: "Cao đẳng FPT Polytechnic Hồ Chí Minh",
-      time: "2021 - 2023",
+      time: "2021 – 2023",
       major: "Chuyên ngành: Thương mại điện tử",
-      gpa: "GPA: 8.2/10",
+      gpa: {
+        label: "GPA",
+        value: "8.20 / 10.00",
+      },
     },
   ],
 } as const;

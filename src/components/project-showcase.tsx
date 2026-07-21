@@ -2,15 +2,23 @@
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, CheckCircle2, Clock3, X } from "lucide-react";
-import Image from "next/image";
 import { useEffect, useId, useState } from "react";
 
+import { ProjectGallery } from "@/components/project-gallery";
 import { Button } from "@/components/ui/button";
-import type { Project } from "@/data/portfolio";
+import type { PortfolioImage, Project } from "@/data/portfolio";
 
 type ProjectShowcaseProps = {
   projects: Project[];
 };
+
+function getGalleryImages(project: Project): PortfolioImage[] {
+  return [
+    ...(project.images.cover ? [project.images.cover] : []),
+    ...project.images.gallery,
+    ...project.images.screenshots,
+  ];
+}
 
 export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
   const [activeProject, setActiveProject] = useState<Project | null>(null);
@@ -28,11 +36,12 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
       }
     };
 
+    const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [activeProject]);
@@ -57,25 +66,14 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
               delay: reduceMotion ? 0 : index * 0.08,
             }}
           >
-            <div
-              className={`relative overflow-hidden bg-slate-50 ${
-                index === 0 ? "aspect-[4/3]" : "aspect-[16/10]"
-              }`}
-            >
-              <Image
-                src={project.image}
-                alt={`Ảnh minh họa dự án ${project.title}`}
-                fill
-                sizes={
-                  index === 0
-                    ? "(min-width: 1024px) 52vw, 100vw"
-                    : "(min-width: 1024px) 38vw, 100vw"
-                }
-                className="object-cover transition duration-500 group-hover:scale-[1.025]"
+            <div className="p-3">
+              <ProjectGallery
+                images={getGalleryImages(project)}
+                projectTitle={project.title}
               />
             </div>
             <div className="p-6 sm:p-8">
-              <div className="flex flex-wrap items-center gap-3 text-sm text-slate-500">
+              <div className="flex flex-wrap items-center gap-3 text-sm font-medium tracking-normal text-slate-500 proportional-nums">
                 <span>{project.category}</span>
                 {project.role ? <span>{project.role}</span> : null}
                 {project.time ? <span>{project.time}</span> : null}
@@ -158,7 +156,7 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
                 </button>
               </div>
 
-              <div className="mt-6 grid gap-4 rounded-2xl bg-slate-50 p-4 text-sm text-slate-600 sm:grid-cols-2">
+              <div className="mt-6 grid gap-4 rounded-2xl bg-slate-50 p-4 text-sm font-medium tracking-normal text-slate-600 proportional-nums sm:grid-cols-2">
                 {activeProject.role ? (
                   <p>
                     <span className="font-semibold text-[#0F1B33]">
@@ -186,6 +184,13 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
               <p className="mt-6 text-base leading-7 text-slate-600">
                 {activeProject.description}
               </p>
+
+              <div className="mt-8">
+                <ProjectGallery
+                  images={getGalleryImages(activeProject)}
+                  projectTitle={activeProject.title}
+                />
+              </div>
 
               {activeProject.achievements.length > 0 ? (
                 <ul className="mt-6 grid gap-3">

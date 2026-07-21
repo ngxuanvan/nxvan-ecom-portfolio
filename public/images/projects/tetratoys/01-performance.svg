@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 720" role="img" aria-label="Ảnh minh họa hiệu quả dự án Tetra Toys">
+  <rect width="980" height="720" rx="44" fill="#FFFFFF"/>
+  <rect x="72" y="80" width="836" height="560" rx="34" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="2"/>
+  <text x="122" y="156" fill="#0F1B33" font-family="Arial, sans-serif" font-size="40" font-weight="700">Tetra Toys</text>
+  <text x="122" y="196" fill="#2563EB" font-family="Arial, sans-serif" font-size="22" font-weight="700">Digital Marketing dashboard</text>
+  <rect x="122" y="262" width="210" height="190" rx="28" fill="#DBEAFE"/>
+  <rect x="386" y="262" width="210" height="190" rx="28" fill="#EFF6FF" stroke="#BFDBFE"/>
+  <rect x="650" y="262" width="210" height="190" rx="28" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <text x="164" y="350" fill="#0F1B33" font-family="Arial, sans-serif" font-size="24" font-weight="700">Doanh thu</text>
+  <text x="164" y="398" fill="#2563EB" font-family="Arial, sans-serif" font-size="38" font-weight="700">2,65 triệu</text>
+  <text x="428" y="350" fill="#0F1B33" font-family="Arial, sans-serif" font-size="24" font-weight="700">Mục tiêu</text>
+  <text x="428" y="398" fill="#2563EB" font-family="Arial, sans-serif" font-size="42" font-weight="700">105,9%</text>
+  <text x="692" y="350" fill="#0F1B33" font-family="Arial, sans-serif" font-size="24" font-weight="700">Shopee</text>
+  <text x="692" y="398" fill="#2563EB" font-family="Arial, sans-serif" font-size="42" font-weight="700">140</text>
+  <path d="M132 540h716" stroke="#CBD5E1" stroke-width="3" stroke-linecap="round"/>
+  <path d="M132 540c94-54 162-74 242-44 74 28 130 14 198-46 74-66 152-54 276-18" stroke="#2563EB" stroke-width="10" fill="none" stroke-linecap="round"/>
+</svg>

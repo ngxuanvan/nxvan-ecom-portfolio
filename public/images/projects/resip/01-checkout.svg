@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 720" role="img" aria-label="Ảnh minh họa thanh toán dự án ReSip">
+  <rect width="980" height="720" rx="44" fill="#FFFFFF"/>
+  <rect x="72" y="80" width="836" height="560" rx="34" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="2"/>
+  <text x="122" y="158" fill="#0F1B33" font-family="Arial, sans-serif" font-size="42" font-weight="700">ReSip checkout</text>
+  <text x="122" y="200" fill="#2563EB" font-family="Arial, sans-serif" font-size="22" font-weight="700">MoMo API và đồng bộ đơn hàng</text>
+  <rect x="122" y="260" width="348" height="294" rx="28" fill="#0F1B33"/>
+  <rect x="526" y="260" width="322" height="84" rx="24" fill="#DBEAFE"/>
+  <rect x="526" y="382" width="322" height="84" rx="24" fill="#EFF6FF" stroke="#BFDBFE"/>
+  <rect x="526" y="504" width="322" height="50" rx="18" fill="#2563EB"/>
+  <text x="166" y="344" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="30" font-weight="700">Đơn hàng</text>
+  <text x="166" y="398" fill="#93C5FD" font-family="Arial, sans-serif" font-size="22">Quản trị</text>
+  <text x="166" y="454" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="26" font-weight="700">SQL Server</text>
+  <text x="562" y="314" fill="#0F1B33" font-family="Arial, sans-serif" font-size="26" font-weight="700">Thanh toán trực tuyến</text>
+  <text x="562" y="436" fill="#0F1B33" font-family="Arial, sans-serif" font-size="26" font-weight="700">Đồng bộ trạng thái</text>
+  <text x="646" y="538" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="22" font-weight="700">MoMo API</text>
+</svg>
