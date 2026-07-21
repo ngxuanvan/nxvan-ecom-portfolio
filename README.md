@@ -1,17 +1,77 @@
-# Portfolio Nguyễn Xuân Văn
+# Nguyễn Xuân Văn Portfolio
 
-Single-page personal portfolio built with Next.js App Router, TypeScript, Tailwind CSS, Framer Motion, Lucide React, and npm.
+Portfolio cá nhân của **Nguyễn Xuân Văn**, tập trung vào định hướng **E-commerce**, **SEO** và **Digital Marketing**.
 
-## Setup
+Website được xây dựng như một hồ sơ trực tuyến gọn gàng, hiện đại và dễ mở rộng, dùng để giới thiệu thông tin cá nhân, kinh nghiệm SEO, dự án E-commerce, kỹ năng, học vấn và thông tin liên hệ.
+
+## Website
+
+Production:
+
+[https://nxvan-ecom-portfolio.vercel.app](https://nxvan-ecom-portfolio.vercel.app)
+
+## Điểm nổi bật
+
+- Giao diện một trang, tối ưu cho portfolio cá nhân.
+- Nội dung tiếng Việt, phù hợp với hồ sơ E-commerce và Digital Marketing.
+- Thiết kế tối giản, nền trắng, typography lớn và bố cục editorial.
+- Responsive trên desktop, tablet và mobile.
+- Dữ liệu portfolio được quản lý tập trung trong một file.
+- Hỗ trợ hình ảnh dự án, gallery, lightbox và các trang chi tiết riêng tư.
+- Tối ưu metadata, Open Graph, favicon và SEO cơ bản.
+
+## Công nghệ
+
+- Next.js App Router
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+- Lucide React
+- Vercel
+- npm
+
+## Cấu trúc chính
+
+```text
+src/
+  app/
+    page.tsx
+    projects/[slug]/page.tsx
+    experience/[slug]/page.tsx
+  components/
+  data/
+    portfolio.ts
+
+public/
+  images/
+    profile/
+    experience/
+    projects/
+    certificates/
+  cv/
+```
+
+## Chạy local
+
+Cài dependency:
 
 ```bash
 npm install
+```
+
+Chạy development server:
+
+```bash
 npm run dev
 ```
 
-Open `http://localhost:3000`.
+Mở:
 
-## Validation
+```text
+http://localhost:3000
+```
+
+## Kiểm tra trước khi deploy
 
 ```bash
 npm run lint
@@ -19,102 +79,84 @@ npm run typecheck
 npm run build
 ```
 
-## Edit Portfolio Content
+## Chỉnh nội dung portfolio
 
-All editable portfolio content lives in:
+Toàn bộ nội dung có thể chỉnh trong:
 
 ```text
 src/data/portfolio.ts
 ```
 
-Update the text, project data, skills, education, contact details, and placeholder social URLs there.
+File này quản lý:
 
-## Replace Images
+- Thông tin cá nhân
+- Hero section
+- Giới thiệu
+- Kinh nghiệm
+- Dự án
+- Kỹ năng
+- Học vấn
+- Liên hệ
+- Đường dẫn hình ảnh
+- Đường dẫn CV
 
-Local image placeholders are stored in:
+## Thay ảnh
+
+Ảnh được lưu trong:
 
 ```text
 public/images/
 ```
 
-Current folder structure:
+Một số thư mục quan trọng:
 
 ```text
 public/images/profile/
-public/images/experience/
-public/images/projects/
-public/images/certificates/
-public/cv/
-```
-
-Each experience should have its own folder, for example:
-
-```text
 public/images/experience/duong-gia-phat/
-```
-
-Project galleries are read from slug-based folders:
-
-```text
-public/images/projects/{project-slug}/
-```
-
-For example:
-
-```text
 public/images/projects/tetratoys/
 public/images/projects/resip/
-public/images/projects/seo-case-study/
+public/images/certificates/
 ```
 
-Do not hardcode image paths inside React components. Store every image path in `src/data/portfolio.ts` under each project’s `images` object:
-
-```ts
-images: {
-  cover: { src: "/images/projects/example/cover.webp", alt: "..." },
-  gallery: [{ src: "/images/projects/example/01-overview.webp", alt: "..." }],
-  screenshots: []
-}
-```
-
-The gallery automatically renders every image defined in `cover`, `gallery`, and `screenshots`. If no images are defined, the website displays a clean placeholder automatically.
-
-Replace shared files with final optimized assets while keeping the same filenames, or update the paths in `src/data/portfolio.ts`:
+Khi thêm hoặc thay ảnh, cập nhật đường dẫn tương ứng trong:
 
 ```text
-profile-placeholder.svg
-og-image.svg
+src/data/portfolio.ts
 ```
 
-Recommended production formats: `.webp`, `.avif`, or optimized `.svg` where appropriate.
+Ưu tiên dùng ảnh đã tối ưu với định dạng `.webp`, `.avif`, `.png` hoặc `.svg` tùy trường hợp.
 
-## Replace CV
+## Thay CV
 
-The placeholder CV file is:
+File CV hiện tại nằm tại:
 
 ```text
 public/cv/nguyen-xuan-van-cv.pdf
 ```
 
-Replace it with the final PDF using the same filename so the existing “Tải CV” buttons continue to work.
+Để thay CV mới, ghi đè file PDF cùng tên để các nút **Tải CV** tiếp tục hoạt động.
 
-## Deploy To Vercel
+## Trang chi tiết riêng tư
 
-1. Push the repository to GitHub.
-2. Import the repository in Vercel.
-3. Keep the framework preset as Next.js.
-4. Use the default build command:
+Website có các trang chi tiết dự án và kinh nghiệm dùng cho CV hoặc chia sẻ trực tiếp.
+
+Các trang này:
+
+- Không hiển thị trên navbar.
+- Không hiển thị trên homepage.
+- Không nằm trong sitemap.
+- Được đặt `noindex,nofollow`.
+
+## Deploy
+
+Website đang được deploy trên Vercel. Khi push lên nhánh `main`, Vercel sẽ tự build và publish bản mới.
+
+Deploy thủ công bằng Vercel CLI:
 
 ```bash
-npm run build
+npx vercel --prod
 ```
 
-5. Deploy.
+## Repository
 
-## Custom Domain
-
-1. Open the Vercel project settings.
-2. Go to Domains.
-3. Add the custom domain.
-4. Follow Vercel’s DNS instructions at the domain registrar.
-5. Wait for DNS verification and SSL provisioning to complete.
+Repository này được dùng để quản lý source code, nội dung và tài sản hình ảnh cho portfolio cá nhân của Nguyễn Xuân Văn.
