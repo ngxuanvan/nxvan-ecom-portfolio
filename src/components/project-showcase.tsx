@@ -118,7 +118,7 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
                   <p className="mb-3 text-sm font-medium text-slate-500">
                     Phương thức thanh toán
                   </p>
-                  <div className="flex flex-wrap gap-3">
+                  <div className="flex flex-nowrap items-center gap-2 sm:gap-3">
                     {project.paymentProviders.map((provider) => (
                       <PaymentProviderBadge
                         key={provider.name}
@@ -278,10 +278,39 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
               ) : null}
 
               {activeProject.caseStudy ? (
-                <TetraToysCaseStudy
-                  caseStudy={activeProject.caseStudy}
-                  projectTitle={activeProject.title}
-                />
+                <>
+                  <TetraToysCaseStudy
+                    caseStudy={activeProject.caseStudy}
+                    projectTitle={activeProject.title}
+                  />
+
+                  {activeProject.paymentProviders ? (
+                    <section className="mt-14 border-t border-slate-200 pt-8">
+                      <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+                        <div>
+                          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#2563EB]">
+                            Payment Integration
+                          </p>
+                          <h4 className="mt-3 text-3xl font-semibold tracking-tight text-[#0F1B33] sm:text-4xl">
+                            Tích hợp thanh toán
+                          </h4>
+                        </div>
+                        <p className="max-w-xl text-base leading-7 text-slate-600 lg:text-right">
+                          Các phương thức thanh toán được trình bày để thể hiện
+                          phạm vi tích hợp trong hệ thống ReSip.
+                        </p>
+                      </div>
+                      <div className="mt-6 flex flex-wrap gap-3">
+                        {activeProject.paymentProviders.map((provider) => (
+                          <PaymentProviderBadge
+                            key={provider.name}
+                            provider={provider}
+                          />
+                        ))}
+                      </div>
+                    </section>
+                  ) : null}
+                </>
               ) : (
                 <>
                   <div className="mt-8">

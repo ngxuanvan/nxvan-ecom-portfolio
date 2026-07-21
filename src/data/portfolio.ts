@@ -31,6 +31,7 @@ export type EvidenceImage = PortfolioImage & {
 export type CaseStudyImage = PortfolioImage & {
   title?: string;
   caption: string;
+  description?: string;
 };
 
 export type CaseStudySection = {
@@ -38,7 +39,7 @@ export type CaseStudySection = {
   title: string;
   eyebrow: string;
   description: string;
-  layout: "website" | "two-up" | "wide" | "kpi";
+  layout: "website" | "two-up" | "wide" | "kpi" | "admin";
   images: CaseStudyImage[];
 };
 
@@ -337,7 +338,7 @@ export const portfolio = {
       time: "01/2026 – 04/2026",
       websiteUrl: "https://dotnet.resip.io.vn/",
       description:
-        "Phát triển hệ thống website E-commerce với chức năng quản lý đơn hàng và thanh toán trực tuyến.",
+        "Phát triển hệ thống website E-commerce với chức năng quản lý sản phẩm, quản lý đơn hàng, dashboard quản trị, tích hợp thanh toán trực tuyến và tự động đồng bộ trạng thái giao dịch.",
       achievements: [
         "Phát triển chức năng quản lý đơn hàng phía quản trị bằng ASP.NET Core MVC, SQL Server và Entity Framework Core.",
         "Thiết kế cơ sở dữ liệu và tham gia xây dựng giao diện người dùng, giao diện quản trị.",
@@ -349,8 +350,9 @@ export const portfolio = {
         "ASP.NET Core MVC",
         "SQL Server",
         "Entity Framework Core",
+        "Dashboard quản trị",
         "MoMo API",
-        "Website Development",
+        "Payment Integration",
       ],
       images: {
         cover: {
@@ -369,10 +371,10 @@ export const portfolio = {
         {
           name: "MoMo",
           logo: {
-            src: "/images/projects/resip/payments/logo momo.jpeg",
+            src: "/images/projects/resip/payments/logomomo.webp",
             alt: "Logo MoMo",
-            width: 541,
-            height: 369,
+            width: 960,
+            height: 960,
           },
         },
         {
@@ -394,6 +396,51 @@ export const portfolio = {
           },
         },
       ],
+      caseStudy: {
+        hero: {
+          src: "/images/projects/resip/trangchuresip.png",
+          alt: "Trang chủ website ReSip",
+          title: "Website ReSip",
+          caption:
+            "Giao diện website E-commerce được dùng làm điểm chạm chính cho sản phẩm và quy trình mua hàng.",
+        },
+        sections: [
+          {
+            id: "admin-system",
+            title: "Hệ thống quản trị",
+            eyebrow: "Quản trị vận hành",
+            description:
+              "Giao diện quản trị hỗ trợ theo dõi hoạt động hệ thống, quản lý sản phẩm và kiểm tra lịch sử giao dịch thanh toán.",
+            layout: "admin",
+            images: [
+              {
+                src: "/images/projects/resip/dashboard tổng quan admin.png",
+                alt: "Dashboard tổng quan quản trị của hệ thống ReSip",
+                title: "Dashboard tổng quan quản trị",
+                caption: "Dashboard tổng quan quản trị",
+                description:
+                  "Tổng hợp nhanh các thông tin vận hành và trạng thái chính của hệ thống.",
+              },
+              {
+                src: "/images/projects/resip/quản lý danh sách sản phẩm.png",
+                alt: "Màn hình quản lý danh sách sản phẩm trong trang quản trị ReSip",
+                title: "Quản lý danh sách sản phẩm",
+                caption: "Quản lý danh sách sản phẩm",
+                description:
+                  "Theo dõi, cập nhật và quản lý thông tin sản phẩm trong trang quản trị.",
+              },
+              {
+                src: "/images/projects/resip/tracking lịch sử giao dịch momo.png",
+                alt: "Màn hình theo dõi lịch sử giao dịch MoMo trong hệ thống ReSip",
+                title: "Theo dõi lịch sử giao dịch MoMo",
+                caption: "Theo dõi lịch sử giao dịch MoMo",
+                description:
+                  "Kiểm tra trạng thái giao dịch, mã thanh toán và lịch sử đồng bộ đơn hàng.",
+              },
+            ],
+          },
+        ],
+      },
     },
   ] satisfies Project[],
   skills: [

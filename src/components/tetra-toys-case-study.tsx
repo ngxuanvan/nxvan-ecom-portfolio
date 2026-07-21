@@ -17,6 +17,10 @@ type TetraToysCaseStudyProps = {
 };
 
 function getSectionGridClass(section: CaseStudySection) {
+  if (section.layout === "admin") {
+    return "grid gap-5 md:grid-cols-2";
+  }
+
   if (section.layout === "website") {
     return "grid gap-4 md:grid-cols-3";
   }
@@ -33,6 +37,10 @@ function getSectionGridClass(section: CaseStudySection) {
 }
 
 function getImageFrameClass(section: CaseStudySection, imageIndex: number) {
+  if (section.layout === "admin") {
+    return imageIndex === 0 ? "aspect-[16/8.5] md:col-span-2" : "aspect-[16/10]";
+  }
+
   if (section.layout === "kpi") {
     return imageIndex === 0
       ? "aspect-[16/9] lg:col-span-2"
@@ -51,6 +59,14 @@ function getImageFrameClass(section: CaseStudySection, imageIndex: number) {
 }
 
 function imageSizes(section: CaseStudySection, imageIndex: number) {
+  if (section.layout === "admin" && imageIndex === 0) {
+    return "(min-width: 1024px) 72vw, 100vw";
+  }
+
+  if (section.layout === "admin") {
+    return "(min-width: 768px) 44vw, 100vw";
+  }
+
   if (section.layout === "kpi" && imageIndex === 0) {
     return "(min-width: 1024px) 58vw, 100vw";
   }
@@ -85,7 +101,12 @@ function CaseStudyImageCard({
       onClick={onOpen}
       aria-label={`Mở ảnh ${image.title ?? image.alt}`}
       className={`group flex flex-col overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white text-left shadow-[0_22px_70px_-50px_rgba(15,27,51,0.42)] transition duration-300 hover:border-[#2563EB]/35 hover:shadow-[0_28px_80px_-52px_rgba(15,27,51,0.5)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2563EB] ${
-        section.layout === "kpi" && imageIndex === 0 ? "lg:col-span-2" : ""
+        (section.layout === "kpi" && imageIndex === 0) ||
+        (section.layout === "admin" && imageIndex === 0)
+          ? section.layout === "admin"
+            ? "md:col-span-2"
+            : "lg:col-span-2"
+          : ""
       }`}
       initial={reduceMotion ? false : { opacity: 0, y: 18 }}
       whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
@@ -126,6 +147,11 @@ function CaseStudyImageCard({
         <span className="text-pretty mt-1 block text-sm leading-6 text-slate-600">
           {image.caption}
         </span>
+        {image.description ? (
+          <span className="text-pretty mt-2 block text-sm leading-6 text-slate-500">
+            {image.description}
+          </span>
+        ) : null}
       </span>
     </motion.button>
   );
@@ -302,6 +328,11 @@ export function TetraToysCaseStudy({
                   <p className="mt-1 max-w-2xl text-sm leading-6 text-blue-100">
                     {activeImage.caption}
                   </p>
+                  {activeImage.description ? (
+                    <p className="mt-1 max-w-2xl text-sm leading-6 text-blue-100/80">
+                      {activeImage.description}
+                    </p>
+                  ) : null}
                 </div>
                 <button
                   type="button"

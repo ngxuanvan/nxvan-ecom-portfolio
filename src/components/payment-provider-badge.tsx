@@ -14,7 +14,7 @@ export function PaymentProviderBadge({ provider }: PaymentProviderBadgeProps) {
 
   return (
     <motion.div
-      className="flex h-12 min-w-[118px] items-center justify-center rounded-[14px] border border-slate-200 bg-white px-4 shadow-[0_14px_34px_-30px_rgba(15,27,51,0.34)] transition-colors hover:border-[#2563EB]/30"
+      className="flex h-11 min-w-0 flex-1 items-center justify-center rounded-[14px] border border-slate-200 bg-white px-2 shadow-[0_14px_34px_-30px_rgba(15,27,51,0.34)] transition-colors hover:border-[#2563EB]/30 sm:h-12 sm:min-w-[118px] sm:flex-none sm:px-4"
       whileHover={
         reduceMotion
           ? undefined
@@ -32,7 +32,7 @@ export function PaymentProviderBadge({ provider }: PaymentProviderBadgeProps) {
         alt={provider.logo.alt}
         width={provider.logo.width}
         height={provider.logo.height}
-        className="max-h-7 max-w-28 object-contain"
+        className="max-h-6 max-w-full object-contain sm:max-h-7 sm:max-w-28"
       />
     </motion.div>
   );
