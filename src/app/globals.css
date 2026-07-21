@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f7f5f0;
-  --foreground: #1c1917;
+  --background: #ffffff;
+  --foreground: #0f1b33;
 }
 
 @theme inline {
@@ -19,12 +19,13 @@ body {
 }
 
 ::selection {
-  background: #1c1917;
-  color: #fbfaf7;
+  background: #2563eb;
+  color: #ffffff;
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 96px;
 }
 
 @keyframes shimmer {
@@ -57,6 +58,10 @@ html {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   *,
   *::before,
   *::after {

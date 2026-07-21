@@ -5,15 +5,15 @@ import type { ButtonHTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex h-11 items-center justify-center gap-2 rounded-md px-5 text-sm font-medium transition-[background,color,border,transform] duration-300 ease-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-800 active:-translate-y-[1px] disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex h-11 items-center justify-center gap-2 rounded-xl px-5 text-sm font-semibold transition-[background,color,border,transform,box-shadow] duration-300 ease-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2563EB] active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
         primary:
-          "bg-stone-950 text-white hover:bg-stone-800 shadow-[0_14px_30px_-18px_rgba(28,25,23,0.65)]",
+          "bg-[#2563EB] text-white shadow-[0_16px_34px_-20px_rgba(37,99,235,0.95)] hover:bg-[#1d4ed8]",
         secondary:
-          "border border-stone-300 bg-white/75 text-stone-950 hover:border-stone-950 hover:bg-white",
-        ghost: "text-stone-700 hover:bg-stone-200/70 hover:text-stone-950",
+          "border border-slate-200 bg-white text-[#0F1B33] shadow-[0_14px_34px_-26px_rgba(15,27,51,0.35)] hover:border-[#2563EB]/40 hover:text-[#2563EB]",
+        ghost: "text-slate-600 hover:bg-slate-100 hover:text-[#0F1B33]",
       },
       size: {
         default: "h-11 px-5",

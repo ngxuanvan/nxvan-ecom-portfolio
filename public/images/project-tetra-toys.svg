@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 720" role="img" aria-label="Ảnh minh họa dự án Tetra Toys">
+  <rect width="980" height="720" rx="44" fill="#F8FAFC"/>
+  <rect x="60" y="72" width="860" height="576" rx="34" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+  <rect x="108" y="130" width="270" height="410" rx="28" fill="#DBEAFE"/>
+  <rect x="424" y="130" width="448" height="96" rx="24" fill="#0F1B33"/>
+  <rect x="424" y="258" width="200" height="282" rx="24" fill="#EFF6FF" stroke="#BFDBFE"/>
+  <rect x="656" y="258" width="216" height="282" rx="24" fill="#F8FAFC" stroke="#E2E8F0"/>
+  <circle cx="244" cy="278" r="82" fill="#2563EB"/>
+  <rect x="168" y="420" width="152" height="20" rx="10" fill="#0F1B33"/>
+  <rect x="168" y="460" width="110" height="14" rx="7" fill="#60A5FA"/>
+  <text x="456" y="190" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="38" font-weight="700">Tetra Toys</text>
+  <text x="456" y="336" fill="#0F1B33" font-family="Arial, sans-serif" font-size="30" font-weight="700">Shopee</text>
+  <text x="456" y="384" fill="#2563EB" font-family="Arial, sans-serif" font-size="52" font-weight="700">105,9%</text>
+  <text x="690" y="336" fill="#0F1B33" font-family="Arial, sans-serif" font-size="30" font-weight="700">TikTok Shop</text>
+  <text x="690" y="384" fill="#2563EB" font-family="Arial, sans-serif" font-size="44" font-weight="700">15.513</text>
+</svg>

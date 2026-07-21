@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio Nguyễn Xuân Văn
 
-## Getting Started
+Single-page personal portfolio built with Next.js App Router, TypeScript, Tailwind CSS, Framer Motion, Lucide React, and npm.
 
-First, run the development server:
+## Setup
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Validation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
 
-## Learn More
+## Edit Portfolio Content
 
-To learn more about Next.js, take a look at the following resources:
+All editable portfolio content lives in:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```text
+src/data/portfolio.ts
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Update the text, project data, skills, education, contact details, and placeholder social URLs there.
 
-## Deploy on Vercel
+## Replace Images
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Local image placeholders are stored in:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```text
+public/images/
+```
+
+Replace these files with final optimized assets while keeping the same filenames, or update the paths in `src/data/portfolio.ts`:
+
+```text
+profile-placeholder.svg
+project-tetra-toys.svg
+project-resip.svg
+project-seo-case-study.svg
+og-image.svg
+```
+
+Recommended production formats: `.webp`, `.avif`, or optimized `.svg` where appropriate.
+
+## Replace CV
+
+The placeholder CV file is:
+
+```text
+public/cv/nguyen-xuan-van-cv.pdf
+```
+
+Replace it with the final PDF using the same filename so the existing “Tải CV” buttons continue to work.
+
+## Deploy To Vercel
+
+1. Push the repository to GitHub.
+2. Import the repository in Vercel.
+3. Keep the framework preset as Next.js.
+4. Use the default build command:
+
+```bash
+npm run build
+```
+
+5. Deploy.
+
+## Custom Domain
+
+1. Open the Vercel project settings.
+2. Go to Domains.
+3. Add the custom domain.
+4. Follow Vercel’s DNS instructions at the domain registrar.
+5. Wait for DNS verification and SSL provisioning to complete.

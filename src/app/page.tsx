@@ -1,286 +1,356 @@
 import {
+  ArrowDownToLine,
   ArrowRight,
-  ChartLineUp,
-  Check,
-  EnvelopeSimple,
-  Package,
-  Pulse,
-  ShoppingCart,
-  Sparkle,
-} from "@phosphor-icons/react/dist/ssr";
+  BarChart3,
+  BriefcaseBusiness,
+  GraduationCap,
+  Mail,
+  MapPin,
+  Phone,
+  Search,
+  ShoppingBag,
+} from "lucide-react";
 import Image from "next/image";
 
-import { ContactForm } from "@/components/contact-form";
+import { MotionSection } from "@/components/motion-section";
+import { ProjectShowcase } from "@/components/project-showcase";
 import { Button } from "@/components/ui/button";
+import { portfolio } from "@/data/portfolio";
 
-const projects = [
-  {
-    name: "Northline Atelier",
-    type: "Luxury apparel migration",
-    image: "https://picsum.photos/seed/northline-atelier-commerce/980/720",
-    result: "+28.6%",
-    label: "checkout completion",
-  },
-  {
-    name: "Fjord Pantry",
-    type: "Subscription grocery rebuild",
-    image: "https://picsum.photos/seed/fjord-pantry-storefront/980/720",
-    result: "-41.3%",
-    label: "bundle friction",
-  },
-  {
-    name: "Kanso Supply",
-    type: "B2B catalog operating system",
-    image: "https://picsum.photos/seed/kanso-supply-b2b/980/720",
-    result: "3.7x",
-    label: "repeat order speed",
-  },
-];
-
-const services = [
-  "Storefront architecture",
-  "Conversion diagnostics",
-  "Merchandising systems",
-  "Checkout and account flows",
-  "Retention experiments",
-  "Analytics instrumentation",
-];
-
-const metrics = [
-  ["47.2%", "average PDP scroll lift"],
-  ["18", "markets launched"],
-  ["6.4s", "faster repeat ordering"],
-];
+function SectionHeading({
+  eyebrow,
+  title,
+}: {
+  eyebrow: string;
+  title: string;
+}) {
+  return (
+    <div className="max-w-3xl">
+      <p className="font-mono text-sm font-medium uppercase text-[#2563EB]">
+        {eyebrow}
+      </p>
+      <h2 className="mt-4 text-4xl font-semibold leading-none tracking-tight text-[#0F1B33] md:text-6xl">
+        {title}
+      </h2>
+    </div>
+  );
+}
 
 export default function Home() {
+  const { person } = portfolio;
+
   return (
-    <main className="min-h-[100dvh] overflow-hidden bg-[#f7f5f0] text-stone-950">
-      <header className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-5 sm:px-6 lg:px-8">
-        <a href="#top" className="font-mono text-sm uppercase tracking-normal">
-          Nx Van
-        </a>
-        <nav
-          className="hidden items-center gap-6 text-sm text-stone-600 md:flex"
-          aria-label="Primary navigation"
-        >
-          <a className="transition hover:text-stone-950" href="#work">
-            Work
+    <main className="min-h-[100dvh] overflow-x-hidden bg-white text-[#0F1B33]">
+      <header className="sticky top-0 z-30 border-b border-slate-200/70 bg-white/95 backdrop-blur">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+          <a
+            href="#trang-dau"
+            className="text-sm font-semibold tracking-tight text-[#0F1B33] sm:text-base"
+          >
+            {person.name}
           </a>
-          <a className="transition hover:text-stone-950" href="#services">
-            Services
-          </a>
-          <a className="transition hover:text-stone-950" href="#contact">
-            Contact
-          </a>
-        </nav>
-        <Button asChild size="sm" variant="secondary">
-          <a href="mailto:hello@nxvan.com">
-            <EnvelopeSimple size={16} weight="bold" />
-            hello@nxvan.com
-          </a>
-        </Button>
+          <nav
+            aria-label="Điều hướng chính"
+            className="hidden items-center gap-6 text-sm font-medium text-slate-600 lg:flex"
+          >
+            {portfolio.nav.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="transition hover:text-[#2563EB] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2563EB]"
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+          <Button asChild size="sm">
+            <a href={person.cvPath} download>
+              <ArrowDownToLine aria-hidden="true" size={16} strokeWidth={1.8} />
+              Tải CV
+            </a>
+          </Button>
+        </div>
       </header>
 
       <section
-        id="top"
-        className="mx-auto grid min-h-[calc(100dvh-84px)] w-full max-w-7xl items-center gap-10 px-4 pb-16 pt-8 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8"
+        id="trang-dau"
+        className="mx-auto grid min-h-[calc(100dvh-73px)] max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 md:py-24 lg:grid-cols-[1.08fr_0.92fr] lg:px-8"
       >
-        <div className="max-w-3xl">
-          <p className="mb-6 inline-flex items-center gap-2 border-y border-stone-300 py-2 font-mono text-xs uppercase text-stone-600">
-            <Pulse size={14} weight="fill" className="text-emerald-700" />
-            Commerce design, engineering, and growth systems
+        <div>
+          <p className="mb-6 inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-sm font-medium text-[#2563EB]">
+            {person.title}
           </p>
-          <h1 className="text-4xl font-semibold leading-none tracking-tight text-stone-950 md:text-6xl">
-            Ecommerce portfolios should prove the store can think.
+          <h1 className="max-w-4xl text-5xl font-semibold leading-none tracking-tight text-[#0F1B33] md:text-7xl">
+            {person.name}
           </h1>
-          <p className="mt-7 max-w-2xl text-base leading-7 text-stone-600 md:text-lg">
-            I build headless storefronts, merchandising tools, and retention
-            workflows for brands that need buying paths to feel fast, exact,
-            and quietly persuasive.
+          <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-600">
+            {portfolio.hero.description}
           </p>
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
             <Button asChild size="lg">
-              <a href="#work">
-                View selected work
-                <ArrowRight size={17} weight="bold" />
+              <a href="#du-an">
+                Xem dự án
+                <ArrowRight aria-hidden="true" size={18} strokeWidth={1.8} />
               </a>
             </Button>
             <Button asChild size="lg" variant="secondary">
-              <a href="#contact">Discuss a build</a>
+              <a href={person.cvPath} download>
+                <ArrowDownToLine
+                  aria-hidden="true"
+                  size={18}
+                  strokeWidth={1.8}
+                />
+                Tải CV
+              </a>
             </Button>
           </div>
         </div>
 
-        <div className="relative min-h-[520px] w-full">
-          <div className="absolute right-0 top-0 h-[68%] w-[86%] overflow-hidden rounded-md border border-stone-300 bg-white shadow-[0_24px_70px_-45px_rgba(28,25,23,0.55)]">
+        <div className="relative mx-auto w-full max-w-[520px]">
+          <div className="absolute -left-4 top-10 hidden h-36 w-36 rounded-[2rem] border border-blue-100 bg-blue-50 md:block" />
+          <div className="relative overflow-hidden rounded-[2.5rem] border border-slate-200 bg-slate-50 shadow-[0_28px_90px_-55px_rgba(15,27,51,0.45)]">
             <Image
-              src="https://picsum.photos/seed/nxvan-commerce-hero/960/820"
-              alt="Editorial ecommerce product photography used as portfolio cover art"
-              fill
+              src={person.profileImage}
+              alt="Ảnh hồ sơ minh họa của Nguyễn Xuân Văn"
+              width={720}
+              height={840}
               priority
-              sizes="(min-width: 1024px) 42vw, 86vw"
-              className="object-cover"
+              className="h-auto w-full"
             />
           </div>
-          <div className="absolute bottom-5 left-0 w-[76%] border border-stone-300 bg-[#fbfaf7]/90 p-5 shadow-[0_22px_60px_-45px_rgba(28,25,23,0.7)] backdrop-blur">
-            <div className="flex items-center justify-between border-b border-stone-200 pb-4">
-              <div>
-                <p className="font-mono text-xs uppercase text-stone-500">
-                  Live audit
-                </p>
-                <p className="mt-1 text-lg font-semibold">Cart recovery map</p>
-              </div>
-              <ShoppingCart size={26} weight="duotone" />
+          <div className="absolute -bottom-6 right-4 rounded-3xl border border-slate-200 bg-white p-5 shadow-[0_22px_70px_-42px_rgba(15,27,51,0.38)]">
+            <p className="font-mono text-sm text-slate-500">GPA</p>
+            <p className="mt-1 text-3xl font-semibold text-[#0F1B33]">3.71/4</p>
+          </div>
+        </div>
+      </section>
+
+      <MotionSection
+        id="gioi-thieu"
+        className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8"
+      >
+        <div className="grid gap-12 lg:grid-cols-[0.75fr_1.25fr]">
+          <SectionHeading eyebrow="01" title={portfolio.about.title} />
+          <div>
+            <div className="space-y-6 text-lg leading-8 text-slate-600">
+              {portfolio.about.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
             </div>
-            <div className="mt-5 grid grid-cols-3 gap-4">
-              {metrics.map(([value, label]) => (
-                <div key={label}>
-                  <p className="font-mono text-xl font-semibold">{value}</p>
-                  <p className="mt-1 text-xs leading-5 text-stone-500">
-                    {label}
+            <div className="mt-12 grid gap-4 sm:grid-cols-3">
+              {portfolio.about.stats.map((stat) => (
+                <div
+                  key={stat.label}
+                  className="rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_18px_50px_-38px_rgba(15,27,51,0.35)]"
+                >
+                  <p className="font-mono text-2xl font-semibold text-[#0F1B33]">
+                    {stat.value}
                   </p>
+                  <p className="mt-2 text-sm text-slate-500">{stat.label}</p>
                 </div>
               ))}
             </div>
           </div>
         </div>
-      </section>
+      </MotionSection>
 
-      <section id="work" className="bg-stone-950 py-20 text-stone-50">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-8 lg:grid-cols-[0.7fr_1.3fr]">
-            <div>
-              <p className="font-mono text-xs uppercase text-stone-400">
-                Selected work
+      <MotionSection
+        id="kinh-nghiem"
+        className="border-y border-slate-200 bg-slate-50 py-20"
+      >
+        <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.75fr_1.25fr] lg:px-8">
+          <SectionHeading eyebrow="02" title="Kinh nghiệm" />
+          <article className="relative rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_22px_70px_-48px_rgba(15,27,51,0.36)] sm:p-8">
+            <div className="absolute bottom-8 left-8 top-8 hidden w-px bg-blue-100 sm:block" />
+            <div className="relative sm:pl-12">
+              <div className="absolute left-[-3.25rem] top-1 hidden h-4 w-4 rounded-full border-4 border-white bg-[#2563EB] shadow-[0_0_0_1px_rgba(37,99,235,0.25)] sm:block" />
+              <p className="text-sm font-medium text-[#2563EB]">
+                {portfolio.experience.time}
               </p>
-              <h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-5xl">
-                Builds with commercial pressure, not portfolio theater.
+              <h3 className="mt-3 text-3xl font-semibold tracking-tight">
+                {portfolio.experience.role}
+              </h3>
+              <p className="mt-2 text-base font-medium text-slate-600">
+                {portfolio.experience.company}
+              </p>
+              <ul className="mt-8 grid gap-4">
+                {portfolio.experience.bullets.map((bullet) => (
+                  <li key={bullet} className="flex gap-3 text-slate-700">
+                    <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#2563EB]" />
+                    <span className="leading-7">{bullet}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        </div>
+      </MotionSection>
+
+      <MotionSection
+        id="du-an"
+        className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8"
+      >
+        <div className="mb-12 grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+          <SectionHeading eyebrow="03" title="Dự án nổi bật" />
+          <p className="max-w-2xl text-lg leading-8 text-slate-600 lg:justify-self-end">
+            Các dự án tập trung vào vận hành E-commerce, SEO, phân tích hiệu quả
+            và phát triển website theo nhu cầu kinh doanh cụ thể.
+          </p>
+        </div>
+        <ProjectShowcase projects={[...portfolio.projects]} />
+      </MotionSection>
+
+      <MotionSection id="ky-nang" className="bg-[#0F1B33] py-20 text-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr]">
+            <div>
+              <p className="font-mono text-sm font-medium uppercase text-blue-200">
+                04
+              </p>
+              <h2 className="mt-4 text-4xl font-semibold leading-none tracking-tight md:text-6xl">
+                Kỹ năng
               </h2>
             </div>
-            <div className="grid gap-5 md:grid-cols-[1.2fr_0.8fr]">
-              {projects.map((project, index) => (
+            <div className="grid gap-5 md:grid-cols-2">
+              {portfolio.skills.map((group) => (
                 <article
-                  key={project.name}
-                  className={`group overflow-hidden border border-white/10 bg-white/[0.04] ${
-                    index === 0 ? "md:row-span-2" : ""
-                  }`}
+                  key={group.title}
+                  className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-6 shadow-[0_22px_70px_-55px_rgba(37,99,235,0.45)]"
                 >
-                  <div
-                    className={`overflow-hidden ${
-                      index === 0 ? "aspect-[4/3]" : "aspect-[16/10]"
-                    } relative`}
-                  >
-                    <Image
-                      src={project.image}
-                      alt={`${project.name} ecommerce case study visual`}
-                      fill
-                      sizes={
-                        index === 0
-                          ? "(min-width: 1024px) 45vw, 100vw"
-                          : "(min-width: 1024px) 30vw, 100vw"
-                      }
-                      className="object-cover opacity-85 transition duration-500 group-hover:scale-[1.03] group-hover:opacity-100"
-                    />
-                  </div>
-                  <div className="grid gap-5 p-5 sm:grid-cols-[1fr_auto]">
-                    <div>
-                      <p className="font-mono text-xs uppercase text-stone-400">
-                        {project.type}
-                      </p>
-                      <h3 className="mt-2 text-xl font-semibold">
-                        {project.name}
-                      </h3>
-                    </div>
-                    <div className="sm:text-right">
-                      <p className="font-mono text-2xl font-semibold">
-                        {project.result}
-                      </p>
-                      <p className="text-xs text-stone-400">{project.label}</p>
-                    </div>
-                  </div>
+                  <h3 className="text-xl font-semibold">{group.title}</h3>
+                  <ul className="mt-6 grid gap-3">
+                    {group.items.map((item) => (
+                      <li
+                        key={item}
+                        className="flex items-center gap-3 text-sm text-slate-200"
+                      >
+                        <span className="h-1.5 w-1.5 rounded-full bg-[#2563EB]" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
                 </article>
               ))}
             </div>
           </div>
         </div>
-      </section>
+      </MotionSection>
 
-      <section id="services" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
-          <div>
-            <p className="font-mono text-xs uppercase text-stone-500">
-              Operating range
-            </p>
-            <h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-5xl">
-              From first impression to second purchase.
-            </h2>
-          </div>
-          <div className="grid gap-3">
-            {services.map((service, index) => (
-              <div
-                key={service}
-                className="reveal-row flex items-center justify-between border-t border-stone-300 py-5"
-                style={{ "--index": index } as React.CSSProperties}
+      <MotionSection
+        id="hoc-van"
+        className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8"
+      >
+        <div className="grid gap-12 lg:grid-cols-[0.75fr_1.25fr]">
+          <SectionHeading eyebrow="05" title="Học vấn" />
+          <div className="grid gap-5 md:grid-cols-2">
+            {portfolio.education.map((item) => (
+              <article
+                key={item.school}
+                className="rounded-[2rem] border border-slate-200 bg-white p-7 shadow-[0_20px_64px_-48px_rgba(15,27,51,0.38)]"
               >
-                <span className="text-lg font-medium">{service}</span>
-                <Check size={20} weight="bold" className="text-emerald-700" />
-              </div>
+                <GraduationCap
+                  aria-hidden="true"
+                  size={30}
+                  strokeWidth={1.8}
+                  className="text-[#2563EB]"
+                />
+                <h3 className="mt-8 text-2xl font-semibold tracking-tight">
+                  {item.school}
+                </h3>
+                <p className="mt-4 text-sm font-medium text-[#2563EB]">
+                  {item.time}
+                </p>
+                <p className="mt-5 text-slate-600">{item.major}</p>
+                <p className="mt-2 font-mono text-slate-700">{item.gpa}</p>
+              </article>
             ))}
           </div>
         </div>
-      </section>
+      </MotionSection>
 
-      <section className="border-y border-stone-300 bg-[#ece7dc] py-20">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1.2fr_0.8fr] lg:px-8">
-          <div className="grid gap-5 sm:grid-cols-2">
-            <div className="min-h-64 border border-stone-300 bg-[#f7f5f0] p-6">
-              <Package size={28} weight="duotone" />
-              <h3 className="mt-8 text-2xl font-semibold">
-                Product detail systems
-              </h3>
-              <p className="mt-4 leading-7 text-stone-600">
-                Modular PDPs for variants, bundles, size logic, review evidence,
-                and editorial product stories.
-              </p>
-            </div>
-            <div className="min-h-64 border border-stone-300 bg-stone-950 p-6 text-white">
-              <ChartLineUp size={28} weight="duotone" />
-              <h3 className="mt-8 text-2xl font-semibold">
-                Revenue instrumentation
-              </h3>
-              <p className="mt-4 leading-7 text-stone-300">
-                Events, funnels, cohort reads, and experiment notes that make
-                growth decisions traceable.
-              </p>
-            </div>
-          </div>
-          <div className="flex flex-col justify-between border-t border-stone-400 pt-6">
-            <Sparkle size={30} weight="duotone" />
-            <p className="mt-16 text-2xl font-medium leading-snug">
-              The goal is not louder design. It is fewer buying doubts at every
-              point where a customer can still leave.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-[0.9fr_0.7fr] lg:items-start">
+      <MotionSection id="lien-he" className="border-t border-slate-200 py-20">
+        <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[1fr_0.8fr] lg:px-8">
           <div>
-            <p className="font-mono text-xs uppercase text-stone-500">
-              Contact
+            <p className="font-mono text-sm font-medium uppercase text-[#2563EB]">
+              06
             </p>
-            <h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-5xl">
-              Bring a messy store problem.
+            <h2 className="mt-4 max-w-3xl text-4xl font-semibold leading-none tracking-tight md:text-6xl">
+              Cùng trao đổi về cơ hội E-commerce & Digital Marketing
             </h2>
-            <p className="mt-6 max-w-xl leading-7 text-stone-600">
-              I am especially useful when product, design, and revenue questions
-              are tangled together and the next build needs to clarify all three.
-            </p>
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+              <Button asChild size="lg">
+                <a href={`mailto:${person.email}`}>
+                  <Mail aria-hidden="true" size={18} strokeWidth={1.8} />
+                  Gửi email
+                </a>
+              </Button>
+              <Button asChild size="lg" variant="secondary">
+                <a href={person.cvPath} download>
+                  <ArrowDownToLine
+                    aria-hidden="true"
+                    size={18}
+                    strokeWidth={1.8}
+                  />
+                  Tải CV
+                </a>
+              </Button>
+            </div>
           </div>
-          <ContactForm />
+          <address className="not-italic">
+            <div className="rounded-[2rem] border border-slate-200 bg-white p-7 shadow-[0_22px_70px_-48px_rgba(15,27,51,0.36)]">
+              <div className="grid gap-5">
+                <a
+                  href={`mailto:${person.email}`}
+                  className="flex gap-4 text-slate-700 transition hover:text-[#2563EB]"
+                >
+                  <Mail
+                    aria-hidden="true"
+                    size={20}
+                    strokeWidth={1.8}
+                    className="mt-1 shrink-0"
+                  />
+                  <span>Email: {person.email}</span>
+                </a>
+                <a
+                  href={`tel:${person.phone.replaceAll(" ", "")}`}
+                  className="flex gap-4 text-slate-700 transition hover:text-[#2563EB]"
+                >
+                  <Phone
+                    aria-hidden="true"
+                    size={20}
+                    strokeWidth={1.8}
+                    className="mt-1 shrink-0"
+                  />
+                  <span>Phone: {person.phone}</span>
+                </a>
+                <p className="flex gap-4 text-slate-700">
+                  <MapPin
+                    aria-hidden="true"
+                    size={20}
+                    strokeWidth={1.8}
+                    className="mt-1 shrink-0"
+                  />
+                  <span>Location: {person.location}</span>
+                </p>
+              </div>
+            </div>
+          </address>
         </div>
-      </section>
+      </MotionSection>
+
+      <footer className="border-t border-slate-200 px-4 py-8 text-center text-sm text-slate-500 sm:px-6 lg:px-8">
+        © 2026 Nguyễn Xuân Văn. Được xây dựng bằng Next.js.
+      </footer>
+
+      <div
+        aria-hidden="true"
+        className="pointer-events-none fixed bottom-8 left-8 hidden gap-3 rounded-full border border-slate-200 bg-white px-4 py-3 text-slate-500 shadow-[0_18px_60px_-45px_rgba(15,27,51,0.4)] lg:flex"
+      >
+        <ShoppingBag size={17} strokeWidth={1.8} />
+        <Search size={17} strokeWidth={1.8} />
+        <BarChart3 size={17} strokeWidth={1.8} />
+        <BriefcaseBusiness size={17} strokeWidth={1.8} />
+      </div>
     </main>
   );
 }
