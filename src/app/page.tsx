@@ -101,19 +101,29 @@ export default function Home() {
                 </p>
               ))}
             </div>
-            <StaggerGroup className="mt-12 grid gap-4 sm:grid-cols-3">
-              {portfolio.about.stats.map((stat) => (
-                <StaggerItem
-                  key={stat.label}
-                  hover
-                  className="rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-[0_18px_50px_-38px_rgba(15,27,51,0.35)] transition-colors hover:border-[#2563EB]/30"
-                >
-                  <p className="text-2xl font-semibold tracking-normal text-[#0F1B33] proportional-nums">
-                    {stat.value}
-                  </p>
-                  <p className="mt-2 text-sm text-slate-500">{stat.label}</p>
-                </StaggerItem>
-              ))}
+            <StaggerGroup className="mt-8">
+              <StaggerItem
+                hover
+                className="grid overflow-hidden rounded-[1.5rem] border border-slate-200 bg-slate-50/70 shadow-[0_14px_42px_-38px_rgba(15,27,51,0.28)] transition-colors hover:border-[#2563EB]/25 sm:grid-cols-3"
+              >
+                {portfolio.about.stats.map((stat, index) => (
+                  <div
+                    key={stat.label}
+                    className={`px-5 py-4 sm:px-6 ${
+                      index > 0
+                        ? "border-t border-slate-200 sm:border-l sm:border-t-0"
+                        : ""
+                    }`}
+                  >
+                    <p className="text-3xl font-semibold tracking-normal text-[#0F1B33] proportional-nums">
+                      {stat.value}
+                    </p>
+                    <p className="mt-1 text-sm font-medium text-slate-500">
+                      {stat.label}
+                    </p>
+                  </div>
+                ))}
+              </StaggerItem>
             </StaggerGroup>
           </div>
         </div>

@@ -118,9 +118,9 @@ export const portfolio = {
       "Tôi có kinh nghiệm về SEO, quản trị website, Google Analytics, Google Search Console và triển khai các dự án E-commerce. Tôi quan tâm đến việc kết hợp dữ liệu, nội dung và trải nghiệm người dùng để nâng cao hiệu quả kinh doanh trên nền tảng số.",
     ],
     stats: [
-      { label: "GPA đại học", value: "3.77 / 4.00" },
-      { label: "Dự án nổi bật", value: "2+" },
-      { label: "Lĩnh vực", value: "SEO & E-commerce" },
+      { label: "GPA", value: "3.77" },
+      { label: "Bài SEO", value: "25+" },
+      { label: "Sản phẩm", value: "35+" },
     ],
   },
   experience: {
@@ -404,7 +404,6 @@ export const portfolio = {
         "E-commerce",
         "ASP.NET Core MVC",
         "SQL Server",
-        "Entity Framework Core",
         "Dashboard quản trị",
         "MoMo API",
         "Payment Integration",
