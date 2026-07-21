@@ -5,6 +5,7 @@ export type NavItem = {
 
 export type Project = {
   id: string;
+  slug: string;
   title: string;
   category: string;
   role?: string;
@@ -17,6 +18,7 @@ export type Project = {
   websiteUrl?: string;
   paymentProviders?: PaymentProvider[];
   caseStudy?: ProjectCaseStudy;
+  detail: ProjectDetail;
 };
 
 export type PortfolioImage = {
@@ -37,6 +39,7 @@ export type CaseStudyImage = PortfolioImage & {
 export type CaseStudySection = {
   id: string;
   title: string;
+  detailTitle?: string;
   eyebrow: string;
   description: string;
   layout: "website" | "two-up" | "wide" | "kpi" | "admin";
@@ -60,6 +63,23 @@ export type PaymentProvider = {
     width: number;
     height: number;
   };
+};
+
+export type ProjectDetail = {
+  heroIntro: string;
+  overview: string[];
+  architecture?: string[];
+  reflection: string;
+};
+
+export type ExperienceDetail = {
+  heroIntro: string;
+  companyOverview: string[];
+  seoWorkflow: string[];
+  keywordResearch: string;
+  tracking: string;
+  backlinkReports: string;
+  reflection: string;
 };
 
 export const portfolio = {
@@ -104,6 +124,7 @@ export const portfolio = {
     ],
   },
   experience: {
+    slug: "duong-gia-phat",
     role: "Nhân viên SEO",
     company: "Công ty TNHH Thương mại & Đào tạo Dương Gia Phát",
     time: "06/2024 – 10/2024",
@@ -142,10 +163,32 @@ export const portfolio = {
       "Theo dõi thứ hạng từ khóa, lượt hiển thị, lượt nhấp và lượng truy cập tự nhiên bằng Google Search Console và Google Analytics.",
       "Đề xuất các phương án tối ưu SEO On-page.",
     ],
+    detail: {
+      heroIntro:
+        "Kinh nghiệm SEO tập trung vào nghiên cứu từ khóa, tối ưu nội dung, cập nhật sản phẩm và theo dõi hiệu quả tìm kiếm tự nhiên.",
+      companyOverview: [
+        "Giai đoạn làm việc tại Công ty TNHH Thương mại & Đào tạo Dương Gia Phát tập trung vào hoạt động SEO, quản trị nội dung website và theo dõi hiệu quả tìm kiếm.",
+      ],
+      seoWorkflow: [
+        "Nghiên cứu từ khóa và phân tích đối thủ.",
+        "Phân nhóm từ khóa theo danh mục sản phẩm và ý định tìm kiếm.",
+        "Viết, tối ưu và cập nhật nội dung trên website.",
+        "Theo dõi thứ hạng, lượt hiển thị, lượt nhấp và lượng truy cập tự nhiên.",
+      ],
+      keywordResearch:
+        "Quá trình nghiên cứu từ khóa được tổ chức theo nhóm chủ đề để hỗ trợ định hướng nội dung và tối ưu SEO On-page.",
+      tracking:
+        "Hoạt động tracking tập trung vào việc theo dõi thứ hạng từ khóa, lượt hiển thị, lượt nhấp và hiệu quả truy cập tự nhiên.",
+      backlinkReports:
+        "Báo cáo backlink được dùng để theo dõi hoạt động hỗ trợ website chính trong quá trình triển khai SEO Off-page.",
+      reflection:
+        "Kinh nghiệm này giúp hệ thống hóa quy trình SEO từ nghiên cứu, triển khai nội dung đến đo lường hiệu quả bằng dữ liệu.",
+    } satisfies ExperienceDetail,
   },
   projects: [
     {
       id: "tetra-toys",
+      slug: "tetratoys",
       title: "Tetra Toys",
       category: "Dự án E-commerce & Digital Marketing",
       role: "Team Leader",
@@ -303,6 +346,7 @@ export const portfolio = {
           {
             id: "campaign-results",
             title: "Campaign Results",
+            detailTitle: "Analytics",
             eyebrow: "Tổng hợp hiệu quả",
             description:
               "Các màn hình kết quả được đặt ở kích thước lớn để thể hiện rõ dữ liệu từ Shopee, TikTok Shop và Facebook.",
@@ -330,9 +374,20 @@ export const portfolio = {
           },
         ],
       },
+      detail: {
+        heroIntro:
+          "Dự án Digital Marketing & E-commerce đa kênh, tập trung vào vận hành Shopee, TikTok Shop, Facebook và website.",
+        overview: [
+          "Tetra Toys là dự án E-commerce & Digital Marketing triển khai trên nhiều điểm chạm gồm Shopee, TikTok Shop, Facebook và website.",
+          "Vai trò chính là điều phối hoạt động, phân công nhiệm vụ, theo dõi tiến độ và kiểm tra chất lượng đầu việc trong quá trình triển khai.",
+        ],
+        reflection:
+          "Dự án giúp kết nối tư duy vận hành E-commerce với dữ liệu Digital Marketing, từ nội dung, kênh bán hàng đến đo lường hiệu quả.",
+      },
     },
     {
       id: "resip",
+      slug: "resip",
       title: "ReSip",
       category: "Dự án phát triển website E-commerce",
       time: "01/2026 – 04/2026",
@@ -440,6 +495,21 @@ export const portfolio = {
             ],
           },
         ],
+      },
+      detail: {
+        heroIntro:
+          "Dự án phát triển website E-commerce với quản lý sản phẩm, quản lý đơn hàng, dashboard quản trị và tích hợp thanh toán trực tuyến.",
+        overview: [
+          "ReSip tập trung vào việc xây dựng hệ thống website E-commerce có giao diện người dùng, giao diện quản trị và quy trình thanh toán trực tuyến.",
+          "Phần quản trị hỗ trợ theo dõi hoạt động hệ thống, quản lý sản phẩm và kiểm tra lịch sử giao dịch thanh toán.",
+        ],
+        architecture: [
+          "ASP.NET Core MVC được sử dụng cho phần phát triển website và chức năng quản trị.",
+          "SQL Server và Entity Framework Core hỗ trợ thiết kế cơ sở dữ liệu và xử lý dữ liệu hệ thống.",
+          "MoMo API được tích hợp để xử lý thanh toán trực tuyến và đồng bộ trạng thái giao dịch.",
+        ],
+        reflection:
+          "Dự án giúp củng cố tư duy phát triển hệ thống E-commerce từ cơ sở dữ liệu, luồng quản trị đến tích hợp thanh toán và đồng bộ trạng thái giao dịch.",
       },
     },
   ] satisfies Project[],
