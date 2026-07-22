@@ -90,7 +90,7 @@ export function HeroSection({
         </motion.p>
         <motion.h1
           variants={reduceMotion ? undefined : item}
-          className="text-balance max-w-4xl text-6xl font-semibold leading-[0.94] tracking-tight text-[#0F1B33] sm:text-7xl lg:text-8xl"
+          className="text-balance max-w-4xl text-6xl font-semibold leading-[1.12] tracking-tight text-[#0F1B33] sm:text-7xl sm:leading-[1.08] lg:text-8xl"
         >
           {name}
         </motion.h1>

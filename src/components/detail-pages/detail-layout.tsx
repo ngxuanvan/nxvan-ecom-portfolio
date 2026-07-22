@@ -72,7 +72,7 @@ export function DetailHero({
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#2563EB]">
               {eyebrow}
             </p>
-            <h1 className="text-balance mt-5 text-5xl font-semibold leading-[0.98] tracking-tight text-[#0F1B33] sm:text-6xl lg:text-7xl">
+            <h1 className="text-balance mt-5 text-5xl font-semibold leading-[1.12] tracking-tight text-[#0F1B33] sm:text-6xl sm:leading-[1.08] lg:text-7xl">
               {title}
             </h1>
             <div className="mt-6 flex flex-wrap gap-2 text-sm font-medium tracking-normal text-slate-600 proportional-nums">

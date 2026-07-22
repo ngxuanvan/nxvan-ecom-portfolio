@@ -40,7 +40,7 @@ function SectionHeading({
         {eyebrow}
       </p>
       <h2
-        className={`text-balance mt-4 text-4xl font-semibold leading-[1.08] tracking-tight md:text-6xl md:leading-[1.02] ${
+        className={`text-balance mt-4 text-4xl font-semibold leading-[1.22] tracking-tight md:text-6xl md:leading-[1.18] ${
           tone === "dark" ? "text-white" : "text-[#0F1B33]"
         }`}
       >
@@ -208,7 +208,7 @@ export default function Home() {
         id="hoc-van"
         className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8"
       >
-        <div className="grid gap-10 lg:grid-cols-[0.34fr_1.66fr] xl:grid-cols-[0.32fr_1.68fr]">
+        <div className="grid gap-10 lg:grid-cols-[0.45fr_1.55fr] xl:grid-cols-[0.42fr_1.58fr]">
           <SectionHeading eyebrow="05" title="Học vấn" />
           <StaggerGroup className="grid gap-5 md:grid-cols-2 xl:gap-6">
             {portfolio.education.map((item) => (
@@ -279,7 +279,7 @@ export default function Home() {
             <p className="text-sm font-semibold uppercase tracking-normal text-[#2563EB] proportional-nums">
               06
             </p>
-            <h2 className="text-balance mt-4 max-w-3xl text-4xl font-semibold leading-none tracking-tight md:text-6xl">
+            <h2 className="text-balance mt-4 max-w-3xl text-4xl font-semibold leading-[1.22] tracking-tight md:text-6xl md:leading-[1.18]">
               Cùng trao đổi về cơ hội E-commerce & Digital Marketing
             </h2>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
