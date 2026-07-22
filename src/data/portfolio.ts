@@ -92,7 +92,7 @@ export const portfolio = {
     email: "nguyenvanxuan.work@gmail.com",
     phone: "0383 937 939",
     location: "Quận 10, TP. Hồ Chí Minh",
-    cvPath: "/cv/nguyen-xuan-van-cv.pdf",
+    cvPath: "/cv/NguyenXuanVanCV.pdf",
     profileImage: "/images/profile/nxvan(1080 x 1080 px).png",
     social: {
       linkedin: "https://www.linkedin.com/in/placeholder-nguyen-xuan-van",
