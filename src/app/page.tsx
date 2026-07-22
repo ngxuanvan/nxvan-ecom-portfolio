@@ -324,7 +324,7 @@ export default function Home() {
               </Button>
             </div>
           </div>
-          <address className="not-italic">
+          <div className="not-italic">
             <div className="rounded-[2rem] border border-slate-200 bg-white p-7 shadow-[0_22px_70px_-48px_rgba(15,27,51,0.36)]">
               <div className="grid gap-5">
                 <a
@@ -362,7 +362,7 @@ export default function Home() {
                 </p>
               </div>
             </div>
-          </address>
+          </div>
         </div>
       </MotionSection>
 

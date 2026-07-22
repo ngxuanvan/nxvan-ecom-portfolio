@@ -28,13 +28,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Nguyễn Xuân Văn" }],
   creator: "Nguyễn Xuân Văn",
   icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
-      { url: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
-      { url: "/logo_van_favicon.png", type: "image/png" },
-    ],
-    shortcut: "/favicon.ico",
+    icon: "/favicon-32x32.png",
     apple: "/apple-touch-icon.png",
   },
   manifest: "/site.webmanifest",
@@ -70,8 +64,11 @@ export default function RootLayout({
     <html
       lang="vi"
       className={`${geistSans.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full overflow-x-hidden">{children}</body>
+      <body className="min-h-full overflow-x-hidden" suppressHydrationWarning>
+        {children}
+      </body>
     </html>
   );
 }
