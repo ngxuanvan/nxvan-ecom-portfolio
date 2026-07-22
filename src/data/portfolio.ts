@@ -136,22 +136,22 @@ export const portfolio = {
       "Một số tài liệu minh họa quá trình nghiên cứu từ khóa, theo dõi thứ hạng nội dung và triển khai backlink trong thời gian làm việc.",
     evidenceImages: [
       {
-        src: "/images/experience/duong-gia-phat/nghiên cứu từ khoá, nhóm từ khoá.png",
+        src: "/images/experience/duong-gia-phat/keyword-research.png",
         alt: "Bảng nghiên cứu và phân nhóm từ khóa trong quá trình làm SEO tại Dương Gia Phát",
         caption: "Nghiên cứu và phân nhóm từ khóa",
       },
       {
-        src: "/images/experience/duong-gia-phat/Theo dõi thứ hạng từ khóa.png",
+        src: "/images/experience/duong-gia-phat/rank-tracking.png",
         alt: "Bảng theo dõi thứ hạng từ khóa trong quá trình làm SEO tại Dương Gia Phát",
         caption: "Theo dõi thứ hạng từ khóa",
       },
       {
-        src: "/images/experience/duong-gia-phat/key đẩy bài viết đang top.png",
+        src: "/images/experience/duong-gia-phat/ranking-content.png",
         alt: "Bảng theo dõi từ khóa và bài viết đang xếp hạng tại Dương Gia Phát",
         caption: "Theo dõi từ khóa và bài viết đang xếp hạng",
       },
       {
-        src: "/images/experience/duong-gia-phat/báo cáo backlink đẩy top site chính.png",
+        src: "/images/experience/duong-gia-phat/backlink-report.png",
         alt: "Bảng báo cáo backlink hỗ trợ website chính tại Dương Gia Phát",
         caption: "Báo cáo backlink hỗ trợ website chính",
       },
@@ -314,7 +314,7 @@ export const portfolio = {
             layout: "two-up",
             images: [
               {
-                src: "/images/projects/tetratoys/gắn sản phẩm vào video giỏ hàng tiktok.png",
+                src: "/images/projects/tetratoys/tiktok-product-video.png",
                 alt: "Gắn sản phẩm vào video và giỏ hàng TikTok",
                 title: "Gắn sản phẩm vào video",
                 caption: "Liên kết nội dung video với sản phẩm để rút ngắn hành trình mua.",
@@ -468,7 +468,7 @@ export const portfolio = {
             layout: "admin",
             images: [
               {
-                src: "/images/projects/resip/dashboard tổng quan admin.png",
+                src: "/images/projects/resip/admin-dashboard.png",
                 alt: "Dashboard tổng quan quản trị của hệ thống ReSip",
                 title: "Dashboard tổng quan quản trị",
                 caption: "Dashboard tổng quan quản trị",
@@ -476,7 +476,7 @@ export const portfolio = {
                   "Tổng hợp nhanh các thông tin vận hành và trạng thái chính của hệ thống.",
               },
               {
-                src: "/images/projects/resip/quản lý danh sách sản phẩm.png",
+                src: "/images/projects/resip/admin-products.png",
                 alt: "Màn hình quản lý danh sách sản phẩm trong trang quản trị ReSip",
                 title: "Quản lý danh sách sản phẩm",
                 caption: "Quản lý danh sách sản phẩm",
@@ -484,7 +484,7 @@ export const portfolio = {
                   "Theo dõi, cập nhật và quản lý thông tin sản phẩm trong trang quản trị.",
               },
               {
-                src: "/images/projects/resip/tracking lịch sử giao dịch momo.png",
+                src: "/images/projects/resip/momo-transaction-history.png",
                 alt: "Màn hình theo dõi lịch sử giao dịch MoMo trong hệ thống ReSip",
                 title: "Theo dõi lịch sử giao dịch MoMo",
                 caption: "Theo dõi lịch sử giao dịch MoMo",
